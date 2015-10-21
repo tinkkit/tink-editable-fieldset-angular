@@ -1,21 +1,243 @@
 <!doctype html>
-<html ng-app="tink.skeleton">
+<html ng-app="tink.fieldset">
 <head>
   <meta charset="utf-8">
   <title>Tink module</title>
   <meta name="description" content="">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0">
+  <link rel="stylesheet" href="styles/tink-fieldset.css">
   <!-- bower:css -->
+  <link rel="stylesheet" href="bower_components/tink-core/dist/tink.css" />
   <!-- endbower -->
 </head>
 <body>
 
-<tink-skeleton data-text="Skeleton is working fine!"></tink-skeleton>
+<div class="container">
+    <div class="row">
+      <div  class="the-fieldset col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
+        <form id="form">
+          <div class="fieldset-editable " data-data="form1" data-ng-init="form1={rijksregisternr:undefined}">
+            <fieldset>
+              <legend>Algemeen</legend>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field1">Type</label>
+                </div>
+                <div class="col-xs-8">
+                  <input type="text" name="field1" id="field1" value="Mutualiteit" required>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field2">Instelling</label>
+                </div>
+                <div class="col-xs-8">
+                  <div class="select">
+                    <select name="field2" id="field2">
+                      <option value="Christelijke Mutualiteit">Christelijke Mutualiteit</option>
+                      <option value="Socialistische Mutualiteit">Socialistische Mutualiteit</option>
+                      <option value="Liberale Mutualiteit">Liberale Mutualiteit</option>
+                      <option value="Onafhankelijk Ziekenfonds">Onafhankelijk Ziekenfonds</option>
+                      <option value="Neutraal Ziekenfonds">Neutraal Ziekenfonds</option>
+                      <option value="Andere">Andere</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field14">Paspoortnr.</label>
+                </div>
+                <div class="col-xs-8">
+                <tink-identity-number data-ng-model="form1.rijksregisternr"></tink-identity-number>
+                  <!-- <input type="text" name="field14" id="field14" value="03/303.33.03" required> -->
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field3">Adres</label>
+                </div>
+                <div class="col-xs-8">
+                  <input type="text" name="field3" id="field3" value="Molenbergstraat 2" required>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-xs-8 col-xs-push-4">
+                  <input type="text" name="field4" id="field4" value="2000 Antwerpen" required>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field5">Telefoonnr.</label>
+                </div>
+                <div class="col-xs-8">
+                  <input type="text" name="field5" id="field5" value="03/303.33.03" disabled>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field6">Opmerking</label>
+                </div>
+                <div class="col-xs-8">
+                  <textarea name="field6" id="field6" rows="4" required></textarea>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field7">Betaalwijze</label>
+                </div>
+                <div class="col-xs-8">
+                  <div class="select">
+                    <select name="field7" id="field7">
+                      <option value="Cash">Cash</option>
+                      <option value="Bancontact">Bancontact</option>
+                      <option value="Maestro">Maestro</option>
+                      <option value="VISA">VISA</option>
+                      <option value="Paypal">Paypal</option>
+                      <option value="Andere">Andere</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <!-- <hr> -->
+
+              <h2 class="legend">Personalia</h2>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field8">Lidnummer</label>
+                </div>
+                <div class="col-xs-8">
+                  <input type="text" name="field8" id="field8" value="" required>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field9">Datum aansluiting</label>
+                </div>
+                <div class="col-xs-4">
+                  <div class="hover-helper">
+                    <data-tink-datepicker data-ng-model="form2.datumaansluiting"></data-tink-datepicker>
+                  </div>
+                  <!-- <input type="text" name="field9" id="field9" value="" required> -->
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field10">Soort aansluiting</label>
+                </div>
+                <div class="col-xs-8">
+                  <input type="text" name="field10" id="field10" value="" required>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field11">Toestand</label>
+                </div>
+                <div class="col-xs-8">
+                  <div class="radio">
+                    <input type="radio" id="radio1" name="radio" value="In orde">
+                    <label for="radio1">In orde</label>
+                  </div>
+                  <div class="radio">
+                    <input type="radio" id="radio2" name="radio" value="Niet in orde">
+                    <label for="radio2">Niet in orde</label>
+                  </div>
+                  <div class="radio">
+                    <input type="radio" id="radio3" name="radio" value="Niet geweten" checked>
+                    <label for="radio3">Niet geweten</label>
+                  </div>
+                  <!--
+                    For radio buttons it is very important to add a hidden input field
+                    with an id that is equal to the radio button's name
+                  -->
+                  <input type="hidden" id="radio" name="radio-hidden" value="">
+                  <!-- <div class="select">
+                    <select name="field11" id="field11">
+                      <option value="In orde">In orde</option>
+                      <option value="Niet in orde">Niet in orde</option>
+                      <option value="Niet geweten">Niet geweten</option>
+                    </select>
+                  </div> -->
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field12">Bijdrage</label>
+                </div>
+                <div class="col-xs-8">
+                  <input type="text" name="field12" id="field12" value="" required>
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field13">Recht op regeling</label>
+                </div>
+                <div class="col-xs-8">
+                  <div class="checkbox">
+                    <input type="checkbox" id="checkbox1" name="checkbox1" value="yes" checked>
+                    <label for="checkbox1">Option one</label>
+                  </div>
+                </div>
+              </div>
+
+
+              <!-- <hr>
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="dateofdeath">Datum overlijden</label>
+                </div>
+                <div class="col-xs-8">
+                  <div class="anchor-add">
+                    <a href="" title="Datum overlijden toevoegen">+ toevoegen</a>
+                  </div>
+                  <div class="input-add">
+                    <input type="text" name="dateofdeath" id="dateofdeath" value="">
+                  </div>
+                </div>
+              </div> -->
+            </fieldset>
+
+            <!-- <div class="fieldset-editable-buttons">
+              <hr>
+              <div class="row">
+                <div class="col-xs-12">
+                  <button type="submit" class="btn-primary btn-submit" type="submit" disabled>Wijzigingen opslaan</button>
+                  <a href="" class="btn btn-transparent btn-cancel">Annuleren</a>
+                </div>
+              </div>
+            </div> -->
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
 
 <!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-touch/angular-touch.js"></script>
+<script src="bower_components/angular-route/angular-route.js"></script>
 <!-- endbower -->
 
-<script src="scripts/directives/skeleton.js"></script>
+<script src="scripts/directives/tink-editable-fieldset-angular.js"></script>
 </body>
 </html>
