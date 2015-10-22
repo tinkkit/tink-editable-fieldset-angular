@@ -15,7 +15,8 @@
    'ngResource',
    'ngRoute',
    'tink.fieldset',
-   'tink.datepicker'
+   'tink.datepicker',
+   'tink.identitycardnumber'
    ])
  .config(function ($routeProvider) { /*, $locationProvider */
   $routeProvider

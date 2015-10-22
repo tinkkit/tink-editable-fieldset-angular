@@ -49,8 +49,8 @@
         }
   
         function getElements(){
-          var mouseElements = element.find('[ng-model]');
-          //mouseElements.append(element.find('[ng-model]'));
+          var mouseElements = element.find('[ng-model], [data-ng-model]');
+          console.log(mouseElements);
           return mouseElements;
         }
 

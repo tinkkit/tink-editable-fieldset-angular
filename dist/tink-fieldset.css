@@ -1,0 +1,248 @@
+/**
+ * Variables
+ * ----------------------------------------------------------------
+ */
+/**
+ * Grid
+ */
+/**
+ * Scaffolding
+ */
+/**
+ * Type
+ */
+/**
+ * Code
+ */
+/**
+ * Animation
+ */
+/**
+ * Form states and alerts
+ */
+/**
+ * Tables
+ */
+/**
+ * Components - global settings
+ */
+/**
+ * Buttons
+ *
+ * For each of Bootstrap's buttons, define text, background and border color.
+ */
+/**
+ * Forms
+ */
+/**
+ * Z-index, a better implementation
+ *
+ * Use like this:
+ *   z-index: layer("popover");
+ *     where popover is a list item of the default list "$layers" (see below)
+ *   or
+ *   z-index: layer("popover", $other-layers);
+ *     where popover is a list item of a custom list named "$other-layers"
+ *
+ * Current layer list
+ * z-index: -1  // cellar
+ * z-index: 0   // ground
+ * z-index: 1   // base => here's where $layers start
+ *
+ * Complete layer list (for reference, add these to $layers only if needed)
+ * $layers: base, navbar, dropdown, tooltip, navbar-sticky, navbar-fixed, modal-background, modal, popover;
+ */
+/**
+ * Bar component
+ *
+ * Settings for a standard bar
+ */
+/**
+ * Logo
+ */
+/**
+ * Navigation
+ *
+ * Settings for the top navigation and the off-canvas navigation
+ */
+/**
+ * Datepicker
+ *
+ * Settings for both the single as the range datepicker
+ */
+/**
+ * Callout
+ */
+/**
+ * Hit-area-box
+ */
+/**
+ * Navs
+ */
+/**
+ * Tabs
+ */
+/**
+ * Tooltips
+ */
+/**
+ * Popovers
+ */
+/**
+ * Upload
+ */
+/**
+ * Labels
+ */
+/**
+ * Modals
+ */
+/**
+ * Cards
+ */
+/**
+ * Interactive table
+ */
+/**
+ * Table alternative heading
+ */
+/**
+ * Thumbnails
+ */
+/**
+ * Pagination
+ */
+/**
+ * Badges
+ */
+/**
+ * Breadcrumbs
+ */
+/**
+ * Loader
+ */
+/**
+ * Functions
+ * ----------------------------------------------------------------
+ */
+/**
+ * Strip units from any number
+ */
+/**
+ *  Convert pixels to em
+ */
+/**
+ *  Convert pixels to rem
+ */
+/**
+ * Return a space separated list as rem values
+ * e.g. padding: rem(10 20 10 15);
+ */
+/**
+ * Mixins
+ * --------------------------------------------------
+ */
+/**
+ * Arrow mixin
+ * --------------------------------------------------
+ * Arrow
+ * :before is the arrow border
+ * :after is the arrow background
+ */
+/**
+ * Form mixins
+ *
+ */
+.the-fieldset .stick {
+  background-color: rgba(255, 255, 255, 0.9);
+  overflow: hidden;
+  transition: box-shadow 0.1s; }
+  .the-fieldset .stick h2.h3 {
+    margin: 1rem 0rem ; }
+  .the-fieldset .stick.is-sticky {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.5);
+    z-index: 100 !important; }
+.the-fieldset .fieldset-editable-buttons {
+  transition: transform 0.1s;
+  transform: translate(0, -100%);
+  padding: 0.28571rem 0rem ; }
+  .the-fieldset .fieldset-editable-buttons .btn-transparent {
+    background-color: transparent;
+    border: none;
+    color: #347ea6;
+    font-weight: normal; }
+    .the-fieldset .fieldset-editable-buttons .btn-transparent:hover {
+      background-color: rgba(0, 0, 0, 0.1); }
+
+.fieldset-editable {
+  border-radius: 3px;
+  margin: 0.57143rem 0rem ;
+  padding: 1.07143rem ;
+  transition: all 0.1s linear;
+  /**
+   * States
+   */ }
+  .fieldset-editable label {
+    color: #888;
+    font-weight: normal;
+    line-height: 1.428571429;
+    margin: 1px 0 0;
+    padding: 0.42857rem 0.85714rem 0rem 0rem ; }
+  .fieldset-editable input[type="checkbox"] + label, .fieldset-editable input[type="radio"] + label {
+    color: #333;
+    margin-left: 0.35714rem ; }
+  .fieldset-editable .anchor-add {
+    left: 0.85714rem ;
+    position: absolute;
+    top: 0; }
+  .fieldset-editable .add-icon {
+    color: #5fb1d6;
+    display: none;
+    position: absolute;
+    left: 1.85714rem ;
+    top: 0.5rem ;
+    z-index: 1; }
+  .fieldset-editable input, .fieldset-editable .faux-input, .fieldset-editable select, .fieldset-editable textarea {
+    background-color: transparent;
+    border: 1px solid transparent; }
+    .fieldset-editable input[disabled], .fieldset-editable .faux-input[disabled], .fieldset-editable select[disabled], .fieldset-editable textarea[disabled] {
+      background-color: transparent;
+      cursor: not-allowed; }
+    .fieldset-editable input:invalid ~ .add-icon, .fieldset-editable .faux-input:invalid ~ .add-icon, .fieldset-editable select:invalid ~ .add-icon, .fieldset-editable textarea:invalid ~ .add-icon {
+      display: block; }
+  .fieldset-editable-is-hovered input, .fieldset-editable-is-hovered .faux-input, .fieldset-editable-is-hovered select, .fieldset-editable-is-hovered textarea {
+    border: 1px solid rgba(187, 187, 187, 0.4); }
+    .fieldset-editable-is-hovered input[disabled], .fieldset-editable-is-hovered .faux-input[disabled], .fieldset-editable-is-hovered select[disabled], .fieldset-editable-is-hovered textarea[disabled] {
+      background-color: transparent;
+      border: 1px solid transparent;
+      cursor: default; }
+    .fieldset-editable-is-hovered input:invalid, .fieldset-editable-is-hovered .faux-input:invalid, .fieldset-editable-is-hovered select:invalid, .fieldset-editable-is-hovered textarea:invalid {
+      border: 1px solid rgba(187, 187, 187, 0.4) !important; }
+    .fieldset-editable-is-hovered input:hover, .fieldset-editable-is-hovered .faux-input:hover, .fieldset-editable-is-hovered select:hover, .fieldset-editable-is-hovered textarea:hover {
+      border: 1px solid #bbb; }
+      .fieldset-editable-is-hovered input:hover[disabled], .fieldset-editable-is-hovered .faux-input:hover[disabled], .fieldset-editable-is-hovered select:hover[disabled], .fieldset-editable-is-hovered textarea:hover[disabled] {
+        border: 1px solid transparent; }
+  .fieldset-editable-is-active {
+    background-color: #eaeaea; }
+    .fieldset-editable-is-active .add-icon {
+      display: none !important; }
+    .fieldset-editable-is-active hr {
+      border-top-color: #bbb; }
+    .fieldset-editable-is-active input, .fieldset-editable-is-active .faux-input, .fieldset-editable-is-active select, .fieldset-editable-is-active textarea {
+      background-color: #fff;
+      border: 1px solid #bbb; }
+      .fieldset-editable-is-active input:focus, .fieldset-editable-is-active .faux-input:focus, .fieldset-editable-is-active select:focus, .fieldset-editable-is-active textarea:focus {
+        border: 1px solid #5fb1d6; }
+      .fieldset-editable-is-active input[disabled], .fieldset-editable-is-active .faux-input[disabled], .fieldset-editable-is-active select[disabled], .fieldset-editable-is-active textarea[disabled] {
+        border: 1px solid transparent; }
+    .fieldset-editable-is-active legend, .fieldset-editable-is-active .legend {
+      border-bottom-color: #bbb; }
+    .fieldset-editable-is-active .fieldset-editable-buttons {
+      transform: translate(0, 0); }
+
+.legend {
+  border-bottom: 1px solid #eaeaea;
+  color: #333;
+  font-size: 1.5rem ;
+  line-height: inherit;
+  margin: 2.28571rem 0rem 1.42857rem ; }

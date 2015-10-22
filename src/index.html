@@ -8,7 +8,7 @@
 	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0">
   <link rel="stylesheet" href="styles/tink-fieldset.css">
 	<!-- bower:css -->
-  <link rel="stylesheet" href="bower_components/tink-core/dist/tink.css" />
+	<link rel="stylesheet" href="bower_components/tink-core/dist/tink.css" />
 	<!-- endbower -->
 </head>
 <body>
@@ -16,17 +16,18 @@
 <div class="container">
     <div class="row">
       <div  class="the-fieldset col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
-        <form id="form">
-          <div class="fieldset-editable " data-data="form1" data-ng-init="form1={rijksregisternr:undefined}">
+        <form id="form" tink-fieldset>
+          <div class="fieldset-editable "  data-data="form1" data-ng-init="form1={rijksregisternr:undefined}">
             <fieldset>
               <legend>Algemeen</legend>
+              
 
               <div class="row form-group">
                 <div class="col-xs-4">
                   <label for="field1">Type</label>
                 </div>
                 <div class="col-xs-8">
-                  <input type="text" name="field1" id="field1" value="Mutualiteit" required>
+                  <input ng-model="mut" type="text" name="field1" id="field1" value="Mutualiteit" required>
                 </div>
               </div>
 
@@ -53,7 +54,7 @@
                   <label for="field14">Paspoortnr.</label>
                 </div>
                 <div class="col-xs-8">
-                <tink-identity-number data-ng-model="form1.rijksregisternr"></tink-identity-number>
+                <tink-identity-number  data-ng-model="form1.rijksregisternr"></tink-identity-number>
                   <!-- <input type="text" name="field14" id="field14" value="03/303.33.03" required> -->
                 </div>
               </div>
@@ -63,12 +64,12 @@
                   <label for="field3">Adres</label>
                 </div>
                 <div class="col-xs-8">
-                  <input type="text" name="field3" id="field3" value="Molenbergstraat 2" required>
+                  <input type="text"  ng-model="straat" name="field3" id="field3" value="Molenbergstraat 2" required>
                 </div>
               </div>
               <div class="row form-group">
                 <div class="col-xs-8 col-xs-push-4">
-                  <input type="text" name="field4" id="field4" value="2000 Antwerpen" required>
+                  <input type="text" ng-model="iets" name="field4" id="field4" value="2000 Antwerpen" required>
                 </div>
               </div>
 
@@ -228,20 +229,23 @@
   </div>
 
 	<!-- bower:js -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/angular/angular.js"></script>
-<script src="bower_components/angular-resource/angular-resource.js"></script>
-<script src="bower_components/angular-cookies/angular-cookies.js"></script>
-<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
-<script src="bower_components/angular-animate/angular-animate.js"></script>
-<script src="bower_components/angular-touch/angular-touch.js"></script>
-<script src="bower_components/angular-route/angular-route.js"></script>
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
+	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.js"></script>
+	<script src="bower_components/angular-touch/angular-touch.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="bower_components/tink-helper-date-angular/dist/tink-helper-date-angular.js"></script>
 	<script src="bower_components/tink-helper-safe-apply-angular/dist/tink-helper-safe-apply-angular.js"></script>
 	<script src="bower_components/tink-helper-format-angular/dist/tink-helper-format-angular.js"></script>
 	<script src="bower_components/tink-datepicker-angular/dist/tink-datepicker-angular.js"></script>
+	<script src="bower_components/tink-identity-card-number-angular/dist/tink-identity-card-number-angular.js"></script>
 	<!-- endbower -->
 
-<script src="scripts/directives/tink-editable-fieldset-angular.js"></script>
+
+<script src="scripts/app.js"></script>
+<script src="scripts/directives/tink-editable-fieldset.js"></script>
 </body>
 </html>
