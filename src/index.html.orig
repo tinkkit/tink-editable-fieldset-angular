@@ -1,15 +1,16 @@
 <!doctype html>
-<html ng-app="tinkApp">
+<<<<<<< Updated upstream
+<html ng-app="tink.fieldset">
 <head>
-	<meta charset="utf-8">
-	<title>Tink module</title>
-	<meta name="description" content="">
-	<meta name="apple-mobile-web-app-capable" content="yes">
-	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0">
+  <meta charset="utf-8">
+  <title>Tink module</title>
+  <meta name="description" content="">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0">
   <link rel="stylesheet" href="styles/tink-fieldset.css">
-	<!-- bower:css -->
+  <!-- bower:css -->
   <link rel="stylesheet" href="bower_components/tink-core/dist/tink.css" />
-	<!-- endbower -->
+  <!-- endbower -->
 </head>
 <body>
 
@@ -227,7 +228,7 @@
     </div>
   </div>
 
-	<!-- bower:js -->
+<!-- bower:js -->
 <script src="bower_components/jquery/dist/jquery.js"></script>
 <script src="bower_components/angular/angular.js"></script>
 <script src="bower_components/angular-resource/angular-resource.js"></script>
@@ -236,12 +237,45 @@
 <script src="bower_components/angular-animate/angular-animate.js"></script>
 <script src="bower_components/angular-touch/angular-touch.js"></script>
 <script src="bower_components/angular-route/angular-route.js"></script>
+<!-- endbower -->
+
+<script src="scripts/directives/tink-editable-fieldset-angular.js"></script>
+=======
+<html ng-app="tinkApp">
+<head>
+	<meta charset="utf-8">
+	<title>Tink module</title>
+	<meta name="description" content="">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="viewport" content="initial-scale=1.0,user-scalable=no,minimum-scale=1.0">
+	<!-- bower:css -->
+	<link rel="stylesheet" href="bower_components/tink-core/dist/tink.css" />
+	<!-- endbower -->
+</head>
+<body>
+
+  <div style="position:relative">
+    <div class="main" role="main" data-ng-view="" data-autoscroll="true" style="position:absolute;top:0;width: 100%;"></div>
+  </div>
+
+	<!-- bower:js -->
+	<script src="bower_components/jquery/dist/jquery.js"></script>
+	<script src="bower_components/angular/angular.js"></script>
+	<script src="bower_components/angular-resource/angular-resource.js"></script>
+	<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+	<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+	<script src="bower_components/angular-animate/angular-animate.js"></script>
+	<script src="bower_components/angular-touch/angular-touch.js"></script>
+	<script src="bower_components/angular-route/angular-route.js"></script>
 	<script src="bower_components/tink-helper-date-angular/dist/tink-helper-date-angular.js"></script>
 	<script src="bower_components/tink-helper-safe-apply-angular/dist/tink-helper-safe-apply-angular.js"></script>
 	<script src="bower_components/tink-helper-format-angular/dist/tink-helper-format-angular.js"></script>
 	<script src="bower_components/tink-datepicker-angular/dist/tink-datepicker-angular.js"></script>
 	<!-- endbower -->
 
-<script src="scripts/directives/tink-editable-fieldset-angular.js"></script>
+	<script src="scripts/app.js"></script>
+	<script src="scripts/directives/tink-editable-fieldset.js"></script>
+	<script src="scripts/controllers/mainCtrl.js"></script>
+>>>>>>> Stashed changes
 </body>
 </html>
