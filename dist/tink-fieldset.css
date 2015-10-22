@@ -153,6 +153,10 @@
  * Form mixins
  *
  */
+.the-fieldset form input[type=text] {
+  border: 1px solid transparent; }
+.the-fieldset .mouseOver input[type=text] {
+  border: 1px solid #bbb !important; }
 .the-fieldset .stick {
   background-color: rgba(255, 255, 255, 0.9);
   overflow: hidden;

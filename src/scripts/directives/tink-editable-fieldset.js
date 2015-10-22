@@ -5,7 +5,7 @@
   } catch (e) {
     module = angular.module('tink.fieldset', []);
   }
-  module.directive('tinkFieldset', [function () {
+  module.directive('tinkFieldset', ['safeApply',function (safeApply) {
     return {
       restrict: 'A',
       scope: {
@@ -16,32 +16,56 @@
 
    
         var initSerialize;
-
+        var focus = 0;
 
         var elementWithMouseOver = [];
         var classToSetWhenOnHover = "mouseOver";
 
         function mouseOverEvent(e,elem){
-          $(element).addClass(classToSetWhenOnHover);
+          safeApply(scope,function(){
+            $(element).addClass(classToSetWhenOnHover);
+          })
         }
 
         function mouseOutEvent(e,elem){
-          $(element).removeClass(classToSetWhenOnHover);
+          safeApply(scope,function(){
+            if(!focus){
+              $(element).removeClass(classToSetWhenOnHover);
+            }
+          })          
         }
 
         function blurEvent(e,elem){
-          if(initSerialize !== getSerializeObject()){
-            scope.valuesChanged = true;
-          }else{
-            scope.valuesChanged = false;
-          }
+          safeApply(scope,function(){
+            if(initSerialize !== getSerializeObject()){
+              scope.valuesChanged = true;
+            }else{
+              scope.valuesChanged = false;
+            }
+            focus = 0;
+            $(element).removeClass(classToSetWhenOnHover);
+          })  
         }
 
-        function getSerializeObject(){console.log(scope.$parent.form)
+        function focusEvent(){
+          safeApply(scope,function(){
+            focus = 1;
+            $(element).addClass(classToSetWhenOnHover);
+          });
+        }
+
+        function getSerializeObject(){
           var serialize = {};
           for (var i = elementWithMouseOver.length - 1; i >= 0; i--) {
             var ngModel = $(elementWithMouseOver[i]).attr('ng-model');
-            var value = scope.$parent.$eval(ngModel) || $(elementWithMouseOver[i]).val();
+            var value;
+            if(scope.$parent.$eval(ngModel)){
+              value = scope.$parent.$eval(ngModel)
+            }else if(value != ''){
+             value = $(elementWithMouseOver[i]).val();
+            }else{
+              value = '';
+            }
             serialize[i] = value;
           };
 
@@ -50,7 +74,6 @@
   
         function getElements(){
           var mouseElements = element.find('[ng-model], [data-ng-model]');
-          console.log(mouseElements);
           return mouseElements;
         }
 
@@ -67,6 +90,12 @@
           })
         }
 
+        function addFocusEvent(){
+          getElements().each(function(index,elem){
+            $(elem).focus(elem,focusEvent);
+          })
+        }
+
         function addBlurEvent(){
           getElements().each(function(index,elem){
             $(elem).blur(elem,blurEvent);
@@ -76,6 +105,7 @@
         addMouseOverEvent();
         addMouseOutEvent();
         addBlurEvent();
+        addFocusEvent();
         initSerialize = getSerializeObject();
       }
     };

@@ -5,6 +5,19 @@
 
 
 .the-fieldset {
+
+form input[type=text]
+{
+  border:1px solid transparent;
+}
+
+.mouseOver{
+  
+  input[type=text]
+  {
+    border:1px solid #bbb !important;
+  }
+}
   .stick {
     background-color: rgba($white, .9);
     overflow: hidden;
@@ -90,6 +103,8 @@
   /**
    * States
    */
+
+
 
   // Normal state
   input,
