@@ -5,9 +5,10 @@
   } catch (e) {
     module = angular.module('tink.fieldset', []);
   }
-  module.directive('tinkFieldset', ['safeApply',function (safeApply) {
+  module.directive('tinkFieldset', ['safeApply','$timeout',function (safeApply,$timeout) {
     return {
       restrict: 'A',
+      priority:0,
       scope: {
         valuesChanged: '='
       },
@@ -37,13 +38,15 @@
 
         function blurEvent(e,elem){
           safeApply(scope,function(){
-            if(initSerialize !== getSerializeObject()){
-              scope.valuesChanged = true;
-            }else{
-              scope.valuesChanged = false;
-            }
-            focus = 0;
-            $(element).removeClass(classToSetWhenOnHover);
+            $timeout(function(){
+              if(initSerialize !== getSerializeObject()){
+                scope.valuesChanged = true;
+              }else{
+                scope.valuesChanged = false;
+              }
+              focus = 0;
+              $(element).removeClass(classToSetWhenOnHover);
+            },0);
           })  
         }
 
@@ -57,15 +60,16 @@
         function getSerializeObject(){
           var serialize = {};
           for (var i = elementWithMouseOver.length - 1; i >= 0; i--) {
-            var ngModel = $(elementWithMouseOver[i]).attr('ng-model');
+            var ngModel = $(elementWithMouseOver[i]).attr('ng-model') || $(elementWithMouseOver[i]).attr('data-ng-model');
             var value;
             if(scope.$parent.$eval(ngModel)){
               value = scope.$parent.$eval(ngModel)
-            }else if(value != ''){
+            }else if(!value){
              value = $(elementWithMouseOver[i]).val();
             }else{
               value = '';
             }
+            console.log(ngModel,value);
             serialize[i] = value;
           };
 
@@ -78,6 +82,7 @@
         }
 
         function addMouseOverEvent(){
+          console.log(getElements());
           getElements().each(function(index,elem){
             elementWithMouseOver.push(elem);
             $(elem).mouseover(elem,mouseOverEvent);
@@ -92,21 +97,23 @@
 
         function addFocusEvent(){
           getElements().each(function(index,elem){
-            $(elem).focus(elem,focusEvent);
+            $(elem).focusin(elem,focusEvent);
           })
         }
 
         function addBlurEvent(){
           getElements().each(function(index,elem){
-            $(elem).blur(elem,blurEvent);
+            $(elem).focusout(elem,blurEvent);
           })
         }
-        
-        addMouseOverEvent();
-        addMouseOutEvent();
-        addBlurEvent();
-        addFocusEvent();
-        initSerialize = getSerializeObject();
+
+        $timeout(function(){
+          addMouseOverEvent();
+          addMouseOutEvent();
+          addBlurEvent();
+          addFocusEvent();
+          initSerialize = getSerializeObject();
+        },0);        
       }
     };
   }]);

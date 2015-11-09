@@ -30,7 +30,7 @@
                   <label for="field1">Type</label>
                 </div>
                 <div class="col-xs-8">
-                  <input ng-model="c1.field1" type="text" name="field1" id="field1"  required>
+                  <input ng-model="c1.field1" type="text" name="field1" id="field1" disabled  required>
                 </div>
               </div>
 
@@ -87,6 +87,48 @@
 
               <div class="row form-group">
                 <div class="col-xs-4">
+                  <label for="field5">timepicker.</label>
+                </div>
+                <div class="col-xs-8">
+                  <tink-timepicker data-ng-model="selectedTime"></tink-timepicker>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field5">datepicker.</label>
+                </div>
+                <div class="col-xs-8">
+                  <data-tink-datepicker data-ng-model="form2.datumaansluiting"></data-tink-datepicker>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field5">datepickerrange.</label>
+                </div>
+                <div class="col-xs-8">
+                  <tink-datepicker-range data-first-date="firstSelectedDate" data-last-date="lastSelectedDate"></tink-datepicker-range>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field5">indenty.</label>
+                </div>
+                <div class="col-xs-8">
+                  <tink-identity-number  data-ng-model="c1.field3"></tink-identity-number>
+                </div>
+              </div>
+              <div class="row form-group">
+                <div class="col-xs-4">
+                  <label for="field5">cardnumber.</label>
+                </div>
+                <div class="col-xs-8">
+                  <tink-national-number required="required" name="nationalNoField" data-ng-model="nationalNoModel"></tink-national-number>
+                </div>
+              </div>
+
+
+              <div class="row form-group">
+                <div class="col-xs-4">
                   <label for="field6">Opmerking</label>
                 </div>
                 <div class="col-xs-8">
@@ -100,7 +142,7 @@
                 </div>
                 <div class="col-xs-8">
                   <div class="select">
-                    <select name="field7" id="field7">
+                    <select ng-model="c2.valuesselect" name="field7" id="field7">
                       <option value="Cash">Cash</option>
                       <option value="Bancontact">Bancontact</option>
                       <option value="Maestro">Maestro</option>
@@ -245,6 +287,13 @@
 	<script src="bower_components/tink-helper-format-angular/dist/tink-helper-format-angular.js"></script>
 	<script src="bower_components/tink-datepicker-angular/dist/tink-datepicker-angular.js"></script>
 	<script src="bower_components/tink-identity-card-number-angular/dist/tink-identity-card-number-angular.js"></script>
+	<script src="bower_components/tink-range-datepicker-angular/dist/tink-range-datepicker-angular.js"></script>
+	<script src="bower_components/angular-messages/angular-messages.js"></script>
+	<script src="bower_components/tink-national-number-angular/dist/tink-national-number-angular.js"></script>
+	<script src="bower_components/tink-timepicker-angular/dist/tink-timepicker-angular.js"></script>
+	<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+	<script src="bower_components/ng-lodash/build/ng-lodash.js"></script>
+	<script src="bower_components/tink-upload-angular/dist/tink-upload-angular.js"></script>
 	<!-- endbower -->
 
 

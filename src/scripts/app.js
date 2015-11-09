@@ -17,7 +17,10 @@
    'tink.fieldset',
    'tink.datepicker',
    'tink.identitycardnumber',
-   'tink.safeApply'
+   'tink.safeApply',
+   'tink.timepicker',
+   'tink.rangedatepicker',
+   'tink.nationalnumber'
    ])
  .config(function ($routeProvider) { /*, $locationProvider */
   $routeProvider
