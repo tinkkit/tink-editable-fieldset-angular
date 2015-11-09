@@ -62,14 +62,13 @@
           for (var i = elementWithMouseOver.length - 1; i >= 0; i--) {
             var ngModel = $(elementWithMouseOver[i]).attr('ng-model') || $(elementWithMouseOver[i]).attr('data-ng-model');
             var value;
-            if(scope.$parent.$eval(ngModel)){
-              value = scope.$parent.$eval(ngModel)
-            }else if(!value){
+            if($(elementWithMouseOver[i]).scope().$eval(ngModel)){
+              value = $(elementWithMouseOver[i]).scope().$eval(ngModel);
+            }else if(value !== ''){
              value = $(elementWithMouseOver[i]).val();
             }else{
               value = '';
             }
-            console.log(ngModel,value);
             serialize[i] = value;
           };
 
@@ -82,7 +81,7 @@
         }
 
         function addMouseOverEvent(){
-          console.log(getElements());
+         
           getElements().each(function(index,elem){
             elementWithMouseOver.push(elem);
             $(elem).mouseover(elem,mouseOverEvent);
