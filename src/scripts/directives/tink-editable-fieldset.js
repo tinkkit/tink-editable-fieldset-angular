@@ -23,20 +23,28 @@
         var classToSetWhenOnHover = "mouseOver";
         var classToSetWhenDefault = "mouseOff";
 
-        $(element).addClass(classToSetWhenDefault);
+        toggleClassDefault();
+
+        function toggleClassHover(){
+          $(element).addClass(classToSetWhenOnHover);
+          $(element).removeClass(classToSetWhenDefault);
+        }
+
+        function toggleClassDefault(){
+          $(element).removeClass(classToSetWhenOnHover);
+          $(element).addClass(classToSetWhenDefault);
+        }
 
         function mouseOverEvent(e,elem){
           safeApply(scope,function(){
-            $(element).addClass(classToSetWhenOnHover);
-            $(element).removeClass(classToSetWhenDefault);
+            toggleClassHover();
           })
         }
 
         function mouseOutEvent(e,elem){
           safeApply(scope,function(){
             if(!focus){
-              $(element).removeClass(classToSetWhenOnHover);
-              $(element).addClass(classToSetWhenDefault);
+              toggleClassDefault();
             }
           })          
         }
@@ -50,8 +58,7 @@
                 scope.valuesChanged = false;
               }
               focus = 0;
-              $(element).removeClass(classToSetWhenOnHover);
-              $(element).addClass(classToSetWhenDefault);
+              toggleClassDefault();
             },0);
           })  
         }
@@ -60,8 +67,7 @@
           safeApply(scope,function(){
             $timeout(function(){
               focus = 1;
-              $(element).addClass(classToSetWhenOnHover);
-              $(element).removeClass(classToSetWhenDefault);
+              toggleClassHover();
             },0);
           });
         }
