@@ -27,16 +27,13 @@
       border: 1px solid transparent !important;
       cursor: default !important;
 
+      // To do: add timepicker shadow dom :-/
       &::-webkit-inner-spin-button,
       ~ .timepicker-later,
       ~ .timepicker-earlier {
         display: none !important;
       }
     }
-  }
-
-  [contenteditable] {
-    display: none !important;
   }
 
 
