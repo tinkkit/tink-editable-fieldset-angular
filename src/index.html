@@ -19,7 +19,7 @@
 
     <div class="row">
       <div  class="col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
-        <form id="form" class="fieldset-editable mouseOff" tink-fieldset values-changed="c1.haschanged">
+        <form id="form" class="fieldset-editable uneditable" tink-fieldset values-changed="c1.haschanged">
           <!-- <div data-data="form1" data-ng-init="form1={rijksregisternr:undefined}"> -->
             <fieldset>
               <legend>Algemeen</legend>
@@ -30,7 +30,7 @@
                   <label for="field1">Type</label>
                 </div>
                 <div class="col-xs-8">
-                  <input ng-model="c1.field1" type="text" name="field1" id="field1" disabled  required>
+                  <input ng-model="c1.field1" type="text" name="field1" id="field1" disabled required>
                 </div>
               </div>
 
@@ -67,7 +67,7 @@
                   <label for="field3">Adres</label>
                 </div>
                 <div class="col-xs-8">
-                  <input type="text"  ng-model="c1.field4" name="field3" id="field3"  required>
+                  <input type="text"  ng-model="c1.field4" name="field3" id="field3" required>
                 </div>
               </div>
               <div class="row form-group">
@@ -90,7 +90,7 @@
                   <label for="field5">timepicker.</label>
                 </div>
                 <div class="col-xs-8">
-                  <tink-timepicker data-ng-model="selectedTime"></tink-timepicker>
+                  <tink-timepicker data-ng-model="selectedTime" disabled></tink-timepicker>
                 </div>
               </div>
               <div class="row form-group">
