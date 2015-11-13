@@ -58,9 +58,11 @@
 
         function focusEvent(){
           safeApply(scope,function(){
-            focus = 1;
-            $(element).addClass(classToSetWhenOnHover);
-            $(element).removeClass(classToSetWhenDefault);
+            $timeout(function(){
+              focus = 1;
+              $(element).addClass(classToSetWhenOnHover);
+              $(element).removeClass(classToSetWhenDefault);
+            },0);
           });
         }
 
