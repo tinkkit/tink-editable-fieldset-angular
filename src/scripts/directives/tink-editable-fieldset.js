@@ -22,29 +22,32 @@
         var elementWithMouseOver = [];
         var classToSetWhenOnHover = "mouseOver";
         var classToSetWhenDefault = "mouseOff";
+        var classToSetWhenActive = "mouseFocus";
 
-        toggleClassDefault();
+        setClassActive(classToSetWhenDefault);
 
-        function toggleClassHover(){
-          $(element).addClass(classToSetWhenOnHover);
-          $(element).removeClass(classToSetWhenDefault);
-        }
-
-        function toggleClassDefault(){
-          $(element).removeClass(classToSetWhenOnHover);
-          $(element).addClass(classToSetWhenDefault);
+        var activeClass = '';
+        function setClassActive(cssClass){
+          
+          if(cssClass !== activeClass){
+            $(element).removeClass(activeClass);
+            $(element).addClass(cssClass);
+            activeClass = cssClass;
+          }
         }
 
         function mouseOverEvent(e,elem){
           safeApply(scope,function(){
-            toggleClassHover();
+            if(activeClass !== classToSetWhenActive){
+              setClassActive(classToSetWhenOnHover);
+            }
           })
         }
 
         function mouseOutEvent(e,elem){
           safeApply(scope,function(){
-            if(!focus){
-              toggleClassDefault();
+            if(activeClass !== classToSetWhenActive){
+              setClassActive(classToSetWhenDefault);
             }
           })          
         }
@@ -58,7 +61,7 @@
                 scope.valuesChanged = false;
               }
               focus = 0;
-              toggleClassDefault();
+              setClassActive(classToSetWhenDefault);
             },0);
           })  
         }
@@ -67,7 +70,7 @@
           safeApply(scope,function(){
             $timeout(function(){
               focus = 1;
-              toggleClassHover();
+              setClassActive(classToSetWhenActive);
             },0);
           });
         }
