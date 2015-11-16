@@ -14,7 +14,7 @@
   .faux-input,
   select,
   textarea {
-    transition: all .2s linear !important;
+    transition: all ($animation-speed * 2) !important;
 
     &:focus {
       background-color: $white !important;
@@ -36,6 +36,17 @@
     }
   }
 
+  input {
+    &::-webkit-inner-spin-button {
+      transition: border ($animation-speed * 2) !important;
+    }
+  }
+
+  .datepicker-icon {
+    transition: color ($animation-speed * 2) !important;
+  }
+
+
 
   /**
    * OFF state
@@ -48,17 +59,34 @@
       background-color: rgba($white, 0);
       border-color: lighten($input-border, 16%);
 
-      // &::-webkit-inner-spin-button {
-      //   display: none !important;
-      // }
-
       @include placeholder(transparent);
 
       .placeholder {
         color: transparent;
       }
     }
+
+    input {
+      &::-webkit-inner-spin-button {
+        border-color: lighten($input-border, 16%) !important;
+      }
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+      + label {
+        &:before {
+          border-color: lighten($input-border, 16%) !important;
+        }
+      }
+    }
+
+    .datepicker-icon {
+      color: lighten($datepicker-icon-color, 32%);
+    }
   }
+
+
 
   /**
    * HOVER state
@@ -76,180 +104,55 @@
         border-color: lighten($input-border, 8%);
       }
 
-      // &::-webkit-inner-spin-button {
-      //   display: none !important;
-      // }
-
       @include placeholder(transparent);
 
       .placeholder {
         color: transparent;
       }
     }
-  }
 
-  /**
-   * ACTIVE state
-   */
-  &.mouseOver {
+    input[type="checkbox"],
+    input[type="radio"] {
+      + label {
+        &:hover {
+          &:before {
+            border-color: lighten($input-border, 8%) !important;
+          }
+        }
+        &:before {
+          border-color: lighten($input-border, 16%) !important;
+        }
+      }
+    }
+
+    input {
+      &::-webkit-inner-spin-button {
+        border-left-color: lighten($input-border, 16%) !important;
+      }
+
+      &:hover {
+        &::-webkit-inner-spin-button {
+          border-left-color: lighten($input-border, 8%) !important;
+        }
+      }
+    }
+
+    .datepicker-input-fields {
+      &:hover {
+        .datepicker-icon {
+          color: lighten($datepicker-icon-color, 16%);
+        }
+      }
+    }
+
+    .datepicker-icon {
+      color: lighten($datepicker-icon-color, 24%);
+    }
   }
 
   /**
    * UNEDITABLE state
    */
   &.uneditable {
-    // input,
-    // .faux-input,
-    // select,
-    // textarea {
-    //   background: transparent !important;
-    //   border: 1px solid transparent !important;
-    //   cursor: default !important;
-    // }
   }
 }
-
-
-//   input[type="checkbox"],
-//   input[type="radio"] {
-//     + label {
-//       color: $text-color;
-//       margin-left: rem(5);
-//     }
-//   }
-
-//   .anchor-add {
-//     left: rem(12);
-//     position: absolute;
-//     top: 0;
-//     // top: rem(2);
-//   }
-
-//   .add-icon {
-//     color: $link-color;
-//     display: none;
-//     position: absolute;
-//     left: rem(26);
-//     top: rem(7);
-//     z-index: 1;
-//   }
-
-//   // .anchor-add {
-//   //   margin: 1px;
-//   //   padding: rem($padding-base-vertical $padding-base-horizontal);
-//   //   position: absolute;
-//   // }
-
-//   // .input-add {
-//   //   display: none;
-//   // }
-
-//   /**
-//    * States
-//    */
-
-
-
-//   // Normal state
-//   input,
-//   .faux-input,
-//   select,
-//   textarea {
-//     background-color: transparent;
-//     border: 1px solid transparent;
-
-//     &[disabled] {
-//       background-color: transparent;
-//       cursor: not-allowed;
-//     }
-
-//     // &[value=''] {
-//     &:invalid {
-//       ~ .add-icon {
-//         display: block;
-//       }
-//     }
-//   }
-
-//   // Hovered state
-//   &-is-hovered {
-//     input,
-//     .faux-input,
-//     select,
-//     textarea {
-//       border: 1px solid rgba($input-border, .40);
-
-//       &[disabled] {
-//         background-color: transparent;
-//         border: 1px solid transparent;
-//         cursor: default;
-//       }
-
-//       &:invalid {
-//         border: 1px solid rgba($input-border, .40) !important;
-//       }
-
-//       &:hover {
-//         border: 1px solid $input-border;
-
-//         &[disabled] {
-//           border: 1px solid transparent;
-//         }
-//       }
-//     }
-//   }
-
-//   // Active state
-//   &-is-active {
-//     background-color: $gray-lighter;
-
-//     .add-icon {
-//       display: none !important;
-//     }
-
-//     hr {
-//       border-top-color: $gray-light;
-//     }
-
-//     input,
-//     .faux-input,
-//     select,
-//     textarea {
-//       background-color: $white;
-//       border: 1px solid $input-border;
-
-//       &:focus {
-//         border: 1px solid $input-border-focus;
-//       }
-
-//       &[disabled] {
-//         border: 1px solid transparent;
-//       }
-//     }
-
-//     legend,
-//     .legend {
-//       border-bottom-color: $gray-light;
-//     }
-
-//     .fieldset-editable-buttons {
-//       // visibility: visible;
-//       transform: translate(0,0);
-//     }
-//   }
-
-//   // &:not(.fieldset-editable-is-hovered),
-//   // &:not(.fieldset-editable-is-active) {
-//   //   textarea {
-//   //     resize: none;
-//   //   }
-//   // }
-// }
-
-// .legend {
-//   border-bottom: 1px solid $legend-border-color;
-//   color: $legend-color;
-//   font-size: rem($font-size-base * 1.5);
-//   line-height: inherit;
-//   margin: rem(32 0 $line-height-computed);
-// }
