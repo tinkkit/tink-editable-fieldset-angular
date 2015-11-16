@@ -1,6 +1,6 @@
 # Tink editable fieldset Angular directive
 
-v1.0.0
+v0.1.0-beta.1
 
 ## What is this repository for?
 
