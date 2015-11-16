@@ -139,6 +139,11 @@
 
     .datepicker-input-fields {
       &:hover {
+        .faux-input {
+          background-color: $white;
+          border-color: lighten($input-border, 8%);
+        }
+
         .datepicker-icon {
           color: lighten($datepicker-icon-color, 16%);
         }
