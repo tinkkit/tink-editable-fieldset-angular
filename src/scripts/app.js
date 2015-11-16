@@ -43,6 +43,7 @@
     this.field3 = '';
     this.field4 = '';
     this.field5 = '';
+    this.field1 = 'only to see';
     this.field6 = '';
     this.dataShow = function(){
       console.log(this.field1)

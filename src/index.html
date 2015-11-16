@@ -54,6 +54,38 @@
 
               <div class="row form-group">
                 <div class="col-xs-4">
+                  <label for="field11">Toestand</label>
+                </div>
+                <div class="col-xs-8">
+                  <div class="radio">
+                    <input type="radio" ng-model="c1.oke" id="radio1" name="radio" value="In orde">
+                    <label for="radio1">In orde</label>
+                  </div>
+                  <div class="radio">
+                    <input type="radio" ng-model="c1.oke" id="radio2" name="radio" value="Niet in orde">
+                    <label for="radio2">Niet in orde</label>
+                  </div>
+                  <div class="radio">
+                    <input type="radio" ng-model="c1.oke" id="radio3" name="radio" value="Niet geweten" checked>
+                    <label for="radio3">Niet geweten</label>
+                  </div>
+                  <!--
+                    For radio buttons it is very important to add a hidden input field
+                    with an id that is equal to the radio button's name
+                  -->
+                  <input type="hidden" id="radio" name="radio-hidden" value="">
+                  <!-- <div class="select">
+                    <select name="field11" id="field11">
+                      <option value="In orde">In orde</option>
+                      <option value="Niet in orde">Niet in orde</option>
+                      <option value="Niet geweten">Niet geweten</option>
+                    </select>
+                  </div> -->
+                </div>
+              </div>
+
+              <div class="row form-group">
+                <div class="col-xs-4">
                   <label for="field14">Paspoortnr.</label>
                 </div>
                 <div class="col-xs-8">
@@ -188,37 +220,6 @@
                 </div>
               </div>
 
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field11">Toestand</label>
-                </div>
-                <div class="col-xs-8">
-                  <div class="radio">
-                    <input type="radio" id="radio1" name="radio" value="In orde">
-                    <label for="radio1">In orde</label>
-                  </div>
-                  <div class="radio">
-                    <input type="radio" id="radio2" name="radio" value="Niet in orde">
-                    <label for="radio2">Niet in orde</label>
-                  </div>
-                  <div class="radio">
-                    <input type="radio" id="radio3" name="radio" value="Niet geweten" checked>
-                    <label for="radio3">Niet geweten</label>
-                  </div>
-                  <!--
-                    For radio buttons it is very important to add a hidden input field
-                    with an id that is equal to the radio button's name
-                  -->
-                  <input type="hidden" id="radio" name="radio-hidden" value="">
-                  <!-- <div class="select">
-                    <select name="field11" id="field11">
-                      <option value="In orde">In orde</option>
-                      <option value="Niet in orde">Niet in orde</option>
-                      <option value="Niet geweten">Niet geweten</option>
-                    </select>
-                  </div> -->
-                </div>
-              </div>
 
               <div class="row form-group">
                 <div class="col-xs-4">
