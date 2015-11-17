@@ -159,5 +159,8 @@
    * UNEDITABLE state
    */
   &.uneditable {
+    .datepicker-icon {
+      display: none;
+    }
   }
 }
