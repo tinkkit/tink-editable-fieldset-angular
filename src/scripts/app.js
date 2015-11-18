@@ -20,7 +20,8 @@
    'tink.safeApply',
    'tink.timepicker',
    'tink.rangedatepicker',
-   'tink.nationalnumber'
+   'tink.nationalnumber',
+   'awelzijn.directives'
    ])
  .config(function ($routeProvider) { /*, $locationProvider */
   $routeProvider
@@ -45,6 +46,10 @@
     this.field5 = '';
     this.field1 = 'only to see';
     this.field6 = '';
+    this.switchValue = false;
+    this.switch = function(){
+      this.switchValue = ! this.switchValue;
+    }
     this.dataShow = function(){
       console.log(this.field1)
       console.log(this.field2)

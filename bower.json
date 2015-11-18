@@ -28,7 +28,9 @@
     "tink-range-datepicker-angular": "~1.0.4",
     "tink-national-number-angular": "~1.0.5",
     "tink-timepicker-angular": "~1.0.4",
-    "tink-upload-angular": "~1.1.4"
+    "tink-upload-angular": "~1.1.4",
+    "awelzijn-directives": "~1.0.13",
+    "ckeditor": "~4.5.5"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.3",
