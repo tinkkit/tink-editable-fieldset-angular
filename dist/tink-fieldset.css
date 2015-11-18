@@ -186,16 +186,13 @@
    * HOVER state
    */
   /**
-   * ACTIVE state
-   */
-  /**
    * UNEDITABLE state
    */ }
   .fieldset-editable input,
   .fieldset-editable .faux-input,
   .fieldset-editable select,
   .fieldset-editable textarea {
-    transition: all .2s linear !important; }
+    transition: all 0.2s !important; }
     .fieldset-editable input:focus,
     .fieldset-editable .faux-input:focus,
     .fieldset-editable select:focus,
@@ -222,6 +219,10 @@
       .fieldset-editable textarea[disabled] ~ .timepicker-later,
       .fieldset-editable textarea[disabled] ~ .timepicker-earlier {
         display: none !important; }
+  .fieldset-editable input::-webkit-inner-spin-button {
+    transition: border 0.2s !important; }
+  .fieldset-editable .datepicker-icon {
+    transition: color 0.2s !important; }
   .fieldset-editable.mouseOff input,
   .fieldset-editable.mouseOff .faux-input,
   .fieldset-editable.mouseOff select,
@@ -268,6 +269,13 @@
     .fieldset-editable.mouseOff select .placeholder,
     .fieldset-editable.mouseOff textarea .placeholder {
       color: transparent; }
+  .fieldset-editable.mouseOff input::-webkit-inner-spin-button {
+    border-color: #e4e4e4 !important; }
+  .fieldset-editable.mouseOff input[type="checkbox"] + label:before,
+  .fieldset-editable.mouseOff input[type="radio"] + label:before {
+    border-color: #e4e4e4 !important; }
+  .fieldset-editable.mouseOff .datepicker-icon {
+    color: #adadad; }
   .fieldset-editable.mouseOver input,
   .fieldset-editable.mouseOver .faux-input,
   .fieldset-editable.mouseOver select,
@@ -320,3 +328,22 @@
     .fieldset-editable.mouseOver select .placeholder,
     .fieldset-editable.mouseOver textarea .placeholder {
       color: transparent; }
+  .fieldset-editable.mouseOver input[type="checkbox"] + label:hover:before,
+  .fieldset-editable.mouseOver input[type="radio"] + label:hover:before {
+    border-color: #cfcfcf !important; }
+  .fieldset-editable.mouseOver input[type="checkbox"] + label:before,
+  .fieldset-editable.mouseOver input[type="radio"] + label:before {
+    border-color: #e4e4e4 !important; }
+  .fieldset-editable.mouseOver input::-webkit-inner-spin-button {
+    border-left-color: #e4e4e4 !important; }
+  .fieldset-editable.mouseOver input:hover::-webkit-inner-spin-button {
+    border-left-color: #cfcfcf !important; }
+  .fieldset-editable.mouseOver .datepicker-input-fields:hover .faux-input {
+    background-color: #fff;
+    border-color: #cfcfcf; }
+  .fieldset-editable.mouseOver .datepicker-input-fields:hover .datepicker-icon {
+    color: #858585; }
+  .fieldset-editable.mouseOver .datepicker-icon {
+    color: #999999; }
+  .fieldset-editable.uneditable .datepicker-icon {
+    display: none; }

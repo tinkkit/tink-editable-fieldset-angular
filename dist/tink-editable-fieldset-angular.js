@@ -20,7 +20,8 @@
    'tink.safeApply',
    'tink.timepicker',
    'tink.rangedatepicker',
-   'tink.nationalnumber'
+   'tink.nationalnumber',
+   'awelzijn.directives'
    ])
  .config(function ($routeProvider) { /*, $locationProvider */
   $routeProvider
@@ -45,6 +46,10 @@
     this.field5 = '';
     this.field1 = 'only to see';
     this.field6 = '';
+    this.switchValue = false;
+    this.switch = function(){
+      this.switchValue = ! this.switchValue;
+    }
     this.dataShow = function(){
       console.log(this.field1)
       console.log(this.field2)
@@ -76,16 +81,47 @@
   } catch (e) {
     module = angular.module('tink.fieldset', []);
   }
-  module.directive('tinkFieldset', ['safeApply','$timeout',function (safeApply,$timeout) {
+  module.directive('tinkFieldset', ['safeApply','$timeout','$compile',function (safeApply,$timeout,$compile) {
     return {
       restrict: 'A',
       priority:0,
       scope: {
-        valuesChanged: '='
+        valuesChanged: '=',
+        tinkFormEditable:'='
       },
       require:'form',
-      link: function(scope,element,attr) {
+      compile:function(template){
+        var cssUneditableClass = "uneditable";
 
+        function getElements(){
+          var mouseElements = $(template).find('[ng-model], [data-ng-model], tink-datepicker-range, data-tink-datepicker-range');
+          return mouseElements;
+        }
+        $(template).find('select').on('mousedown',function(){console.log('ok')})
+
+        /*function checkIfIsEditable(){
+          if($(template).hasClass(cssUneditableClass)){
+            getElements().each(function(index,elem){
+              $(elem).attr('is-disabled','true');
+              $(elem).attr('disabled','true');
+            })
+          }
+        }
+          checkIfIsEditable();    */ 
+
+        return {
+        pre: function () { },
+        post: function (scope, element, attr) {
+        var disabledReady=[];
+
+        function disabledAtStart(){
+          getElements().each(function(index,elem){
+              if($(elem).attr('disabled') || $(elem).scope().isDisabled){
+                disabledReady.push($(elem).get(0));
+              }
+          })
+        }
+        disabledAtStart();
    
         var initSerialize;
         var focus = 0;
@@ -94,6 +130,7 @@
         var classToSetWhenOnHover = "mouseOver";
         var classToSetWhenDefault = "mouseOff";
         var classToSetWhenActive = "mouseFocus";
+        var cssUneditableClass = "uneditable";
 
         setClassActive(classToSetWhenDefault);
 
@@ -107,9 +144,72 @@
           }
         }
 
+         function checkIfIsEditable(){
+          return $(template).hasClass(cssUneditableClass);          
+        }
+
+        scope.$watch('tinkFormEditable',function(value){
+          if(value){
+            $(template).addClass(cssUneditableClass); 
+            getElements().each(function(index,elem){  
+              safeApply(scope,function(){
+                if($(elem).isolateScope()){
+                  $(elem).isolateScope().isDisabled = true;
+                }  
+                $(elem).attr('disabled','true');
+                specialElementsFix($(elem),false);
+              });           
+            })
+          }else{
+            $(template).removeClass(cssUneditableClass);
+            getElements().each(function(index,elem){
+              if(disabledReady.indexOf($(elem).get(0)) === -1){
+                safeApply(scope,function(){
+                  if($(elem).isolateScope()){
+                    $(elem).isolateScope().isDisabled = false;
+                  }                  
+                  $(elem).removeAttr('disabled');
+                  specialElementsFix($(elem),true);
+                });  
+              }              
+            })
+          }
+        })
+
+        function specialElementsFix(element,enable){
+          if($(element).is('select')){
+            elementSelectFix(element,enable);
+          }
+        }
+
+        function elementSelectFix(element,enable){
+          if(!enable){
+            element.css('display','none');
+            var model = element.attr('ng-model') || element.attr('data-ng-model');
+            var input = $('<input type="text" disabled ng-model="'+model+'"/>');
+            //input.css('height',element.outerHeight());
+            input = $compile(input)(scope.$parent);
+            input.insertAfter(element); 
+          }else{
+            element.css('display','block');
+            if(element.next().is('input')){
+              element.next().remove();
+            }
+          }
+        }
+
+        function isDisabled(elem){
+          var targetEl = $(elem);
+          var isDisabled = targetEl.attr('disabled') || targetEl.attr('data-disabled') || targetEl.attr('is-disabled');
+          if(isDisabled){
+            return true;
+          }
+          return false;
+        }
+
         function mouseOverEvent(e,elem){
           safeApply(scope,function(){
-            if(activeClass !== classToSetWhenActive){
+            if(activeClass !== classToSetWhenActive && !isDisabled(e.target)){
               setClassActive(classToSetWhenOnHover);
             }
           })
@@ -117,7 +217,7 @@
 
         function mouseOutEvent(e,elem){
           safeApply(scope,function(){
-            if(activeClass !== classToSetWhenActive){
+            if(activeClass !== classToSetWhenActive && !isDisabled(e.target)){
               setClassActive(classToSetWhenDefault);
             }
           })          
@@ -163,7 +263,7 @@
 
           return JSON.stringify(serialize);
         }
-  
+        
         function getElements(){
           var mouseElements = element.find('[ng-model], [data-ng-model]');
           return mouseElements;
@@ -203,6 +303,8 @@
           initSerialize = getSerializeObject();
         },0);        
       }
+    };
+  }
     };
   }]);
 })();
