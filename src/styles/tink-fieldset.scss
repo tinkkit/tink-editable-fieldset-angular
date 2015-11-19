@@ -4,8 +4,9 @@
 @import "../../bower_components/tink-core/dist/tink/mixins";
 
 .fieldset-editable {
-  background-color: #f8f8f8;
+  background-color: #f2f2f2;
   padding: rem(15);
+  transition: background-color $animation-speed linear;
 
   /**
    * Default styling
@@ -52,6 +53,8 @@
    * OFF state
    */
   &.mouseOff {
+    background-color: #fafafa;
+
     input,
     .faux-input,
     select,
@@ -92,6 +95,8 @@
    * HOVER state
    */
   &.mouseOver {
+    background-color: #fafafa;
+
     input,
     .faux-input,
     select,
@@ -159,6 +164,8 @@
    * UNEDITABLE state
    */
   &.uneditable {
+    background-color: #fafafa;
+
     .datepicker-icon {
       display: none;
     }
