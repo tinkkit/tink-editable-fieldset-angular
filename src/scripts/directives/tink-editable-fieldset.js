@@ -8,34 +8,14 @@
   module.directive('tinkFieldset', ['safeApply','$timeout','$compile',function (safeApply,$timeout,$compile) {
     return {
       restrict: 'A',
-      priority:0,
       scope: {
-        valuesChanged: '=',
-        tinkFormEditable:'='
+        tinkFormEditable:'=?',
+        tinkFormStatus:'=?'
       },
-      require:'form',
       compile:function(template){
-        var cssUneditableClass = "uneditable";
-
-        function getElements(){
-          var mouseElements = $(template).find('[ng-model], [data-ng-model], tink-datepicker-range, data-tink-datepicker-range');
-          return mouseElements;
-        }
-        $(template).find('select').on('mousedown',function(){console.log('ok')})
-
-        /*function checkIfIsEditable(){
-          if($(template).hasClass(cssUneditableClass)){
-            getElements().each(function(index,elem){
-              $(elem).attr('is-disabled','true');
-              $(elem).attr('disabled','true');
-            })
-          }
-        }
-          checkIfIsEditable();    */ 
-
         return {
-        pre: function () { },
-        post: function (scope, element, attr) {
+        post: function () { },
+        pre: function (scope, element, attr) {
         var disabledReady=[];
 
         function disabledAtStart(){
@@ -45,8 +25,7 @@
               }
           })
         }
-        disabledAtStart();
-   
+        var activeElement = null;
         var initSerialize;
         var focus = 0;
 
@@ -59,13 +38,21 @@
         setClassActive(classToSetWhenDefault);
 
         var activeClass = '';
-        function setClassActive(cssClass){
-          
-          if(cssClass !== activeClass){
-            $(element).removeClass(activeClass);
-            $(element).addClass(cssClass);
-            activeClass = cssClass;
-          }
+        function setClassActive(cssClass,elem){
+          safeApply(scope,function(){
+            $timeout(function() {
+              if((activeElement === $(elem).get(0) || activeElement === null)){
+                $(element).removeClass(classToSetWhenOnHover);
+                $(element).removeClass(classToSetWhenDefault);
+                $(element).removeClass(classToSetWhenActive);
+                $(element).removeClass(cssUneditableClass);
+                $(element).addClass(cssClass);
+                activeClass = cssClass;
+                scope.tinkFormStatus = cssClass;
+              }
+            }, 10);
+            
+          })
         }
 
          function checkIfIsEditable(){
@@ -73,7 +60,7 @@
         }
 
         scope.$watch('tinkFormEditable',function(value){
-          if(value){
+          if(!value){
             $(template).addClass(cssUneditableClass); 
             getElements().each(function(index,elem){  
               safeApply(scope,function(){
@@ -111,7 +98,6 @@
             element.css('display','none');
             var model = element.attr('ng-model') || element.attr('data-ng-model');
             var input = $('<input type="text" disabled ng-model="'+model+'"/>');
-            //input.css('height',element.outerHeight());
             input = $compile(input)(scope.$parent);
             input.insertAfter(element); 
           }else{
@@ -124,7 +110,7 @@
 
         function isDisabled(elem){
           var targetEl = $(elem);
-          var isDisabled = targetEl.attr('disabled') || targetEl.attr('data-disabled') || targetEl.attr('is-disabled');
+          var isDisabled = targetEl.attr('disabled') || targetEl.attr('data-disabled') || targetEl.attr('is-disabled') || targetEl.attr('data-is-disabled');
           if(isDisabled){
             return true;
           }
@@ -133,99 +119,59 @@
 
         function mouseOverEvent(e,elem){
           safeApply(scope,function(){
-            if(activeClass !== classToSetWhenActive && !isDisabled(e.target)){
-              setClassActive(classToSetWhenOnHover);
-            }
+              if(activeClass !== classToSetWhenActive && !isDisabled(e.target)){
+                activeElement = $(e.target).get(0);
+                setClassActive(classToSetWhenOnHover,$(e.target).get(0));
+              }
           })
         }
 
         function mouseOutEvent(e,elem){
           safeApply(scope,function(){
-            if(activeClass !== classToSetWhenActive && !isDisabled(e.target)){
-              setClassActive(classToSetWhenDefault);
-            }
+              if(activeClass !== classToSetWhenActive && !isDisabled(e.target)){
+                setClassActive(classToSetWhenDefault,$(e.target).get(0));
+               // activeElement = null;
+              }
           })          
         }
 
         function blurEvent(e,elem){
           safeApply(scope,function(){
             $timeout(function(){
-              if(initSerialize !== getSerializeObject()){
-                scope.valuesChanged = true;
-              }else{
-                scope.valuesChanged = false;
-              }
-              focus = 0;
-              setClassActive(classToSetWhenDefault);
-            },0);
+              setClassActive(classToSetWhenDefault,$(e.target).get(0));         
+            },10);
           })  
         }
 
-        function focusEvent(){
+        function focusEvent(e){
           safeApply(scope,function(){
-            $timeout(function(){
-              focus = 1;
-              setClassActive(classToSetWhenActive);
-            },0);
+              activeElement = $(e.target).get(0);
+              setClassActive(classToSetWhenActive,$(e.target).get(0));
           });
         }
 
-        function getSerializeObject(){
-          var serialize = {};
-          for (var i = elementWithMouseOver.length - 1; i >= 0; i--) {
-            var ngModel = $(elementWithMouseOver[i]).attr('ng-model') || $(elementWithMouseOver[i]).attr('data-ng-model');
-            var value;
-            if($(elementWithMouseOver[i]).scope().$eval(ngModel)){
-              value = $(elementWithMouseOver[i]).scope().$eval(ngModel);
-            }else if(value !== ''){
-             value = $(elementWithMouseOver[i]).val();
-            }else{
-              value = '';
-            }
-            serialize[i] = value;
-          };
-
-          return JSON.stringify(serialize);
-        }
-        
         function getElements(){
           var mouseElements = element.find('[ng-model], [data-ng-model]');
           return mouseElements;
         }
 
-        function addMouseOverEvent(){
-         
+        function addEventsToElements(){
           getElements().each(function(index,elem){
-            elementWithMouseOver.push(elem);
-            $(elem).mouseover(elem,mouseOverEvent);
+            scope.addEvents($(elem));
           })
         }
 
-        function addMouseOutEvent(){
-          getElements().each(function(index,elem){
-            $(elem).mouseout(elem,mouseOutEvent);
-          })
+        scope.addEvents = function(elem){
+          $(elem).focusin(elem,focusEvent);
+          $(elem).mouseover(elem,mouseOverEvent);
+          $(elem).mouseout(elem,mouseOutEvent);          
+          $(elem).focusout(elem,blurEvent);
+        }
+        scope.removeEvents = function(elem){
+          $(elem).unbind('mouseover mouseout focusin focusout');
         }
 
-        function addFocusEvent(){
-          getElements().each(function(index,elem){
-            $(elem).focusin(elem,focusEvent);
-          })
-        }
-
-        function addBlurEvent(){
-          getElements().each(function(index,elem){
-            $(elem).focusout(elem,blurEvent);
-          })
-        }
-
-        $timeout(function(){
-          addMouseOverEvent();
-          addMouseOutEvent();
-          addBlurEvent();
-          addFocusEvent();
-          initSerialize = getSerializeObject();
-        },0);        
+         addEventsToElements(); 
       }
     };
   }

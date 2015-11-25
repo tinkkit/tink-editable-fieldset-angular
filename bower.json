@@ -1,8 +1,8 @@
 {
-  "name": "tink-fieldset-angular",
+  "name": "tink-editable-fieldset-angular",
   "version": "0.1.0-beta.1",
   "main": [
-    "dist/tink-fieldset-angular.js"
+    "dist/tink-editable-fieldset-angular.js"
   ],
   "ignore": [
     ".*",
@@ -29,8 +29,7 @@
     "tink-national-number-angular": "~1.0.5",
     "tink-timepicker-angular": "~1.0.4",
     "tink-upload-angular": "~1.1.4",
-    "awelzijn-directives": "~1.0.13",
-    "ckeditor": "~4.5.5"
+    "awelzijn-directives": "~1.0.13"
   },
   "devDependencies": {
     "angular-mocks": "~1.4.3",
