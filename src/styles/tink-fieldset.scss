@@ -5,7 +5,7 @@
 
 .fieldset-editable {
   background-color: #f2f2f2;
-  padding: rem(15);
+  padding: rem(15 15 65);
   transition: background-color $animation-speed linear;
 
   /**
@@ -55,7 +55,7 @@
    * OFF state
    */
   &.mouseOff {
-    background-color: #fafafa;
+    background-color: transparent;
 
     input,
     .faux-input,
@@ -91,6 +91,10 @@
     .datepicker-icon {
       color: lighten($datepicker-icon-color, 32%);
     }
+
+    .fieldset-editable-buttons {
+      transform: translate(0, rem(70));
+    }
   }
 
 
@@ -99,7 +103,7 @@
    * HOVER state
    */
   &.mouseOver {
-    background-color: #fafafa;
+    background-color: transparent;
 
     input,
     .faux-input,
@@ -166,16 +170,37 @@
     .datepicker-icon {
       color: lighten($datepicker-icon-color, 24%);
     }
+
+    .fieldset-editable-buttons {
+      transform: translate(0, rem(70));
+    }
   }
 
   /**
    * UNEDITABLE state
    */
   &.uneditable {
-    background-color: #fafafa;
+    background-color: transparent;
 
     .datepicker-icon {
       display: none;
     }
+
+    .fieldset-editable-buttons {
+      transform: translate(0, rem(70));
+    }
+  }
+
+  &-buttons {
+    background: rgba($white, .85);
+    border-top: 1px solid $gray-lighter;
+    bottom: 0;
+    left: 0;
+    padding: rem(15);
+    position: fixed;
+    right: 0;
+    transform: translate(0, 0);
+    transition: transform $animation-speed linear;
+    z-index: layer("nav-top");
   }
 }
