@@ -38,7 +38,7 @@
   //   requireBase: false
   // });
   // $locationProvider.hashPrefix('!');
-}).controller('controllero',function($scope){
+}).controller('controllero', function(){
     this.field1 = '';
     this.field2 = 'Christelijke Mutualiteit';
     this.field3 = '';
@@ -49,13 +49,13 @@
     this.switchValue = false;
     this.switch = function(){
       this.switchValue = ! this.switchValue;
-    }
+    };
     this.dataShow = function(){
-      console.log(this.field1)
-      console.log(this.field2)
-      console.log(this.field3)
-      console.log(this.field4)
-      console.log(this.field5)
-      console.log(this.field6)
-    }
+      console.log(this.field1);
+      console.log(this.field2);
+      console.log(this.field3);
+      console.log(this.field4);
+      console.log(this.field5);
+      console.log(this.field6);
+    };
   });

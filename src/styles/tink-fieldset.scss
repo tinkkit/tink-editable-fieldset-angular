@@ -3,9 +3,10 @@
 @import "../../bower_components/tink-core/dist/tink/functions";
 @import "../../bower_components/tink-core/dist/tink/mixins";
 
+$fieldset-editable-padding: 15px;
+
 .fieldset-editable {
-  background-color: #f2f2f2;
-  padding: rem(15 15 65);
+  padding: rem($fieldset-editable-padding $fieldset-editable-padding 65);
   transition: background-color $animation-speed linear;
 
   /**
@@ -49,13 +50,20 @@
     transition: color ($animation-speed * 2) !important;
   }
 
+  /**
+   * FOCUS state
+   */
+  &.mouseFocus {
+    background-color: #f2f2f2;
+  }
+
 
 
   /**
    * OFF state
    */
   &.mouseOff {
-    background-color: transparent;
+    // background-color: transparent;
 
     input,
     .faux-input,
@@ -103,7 +111,7 @@
    * HOVER state
    */
   &.mouseOver {
-    background-color: transparent;
+    // background-color: transparent;
 
     input,
     .faux-input,
@@ -180,7 +188,7 @@
    * UNEDITABLE state
    */
   &.uneditable {
-    background-color: transparent;
+    // background-color: transparent;
 
     .datepicker-icon {
       display: none;
@@ -196,11 +204,31 @@
     border-top: 1px solid $gray-lighter;
     bottom: 0;
     left: 0;
-    padding: rem(15);
+    padding: rem($fieldset-editable-padding);
     position: fixed;
     right: 0;
     transform: translate(0, 0);
-    transition: transform $animation-speed linear;
-    z-index: layer("nav-top");
+    transition: padding $animation-speed linear, transform $animation-speed linear;
+    z-index: layer("above-pseudo");
+  }
+}
+
+/**
+ * Various fixes when nav left or nav right is there
+ */
+html {
+  &.has-nav-left {
+    .fieldset-editable-buttons {
+      @include mq($screen-sm) {
+        padding-left: rem($fieldset-editable-padding + $nav-aside-width + $nav-aside-extra-body-padding);
+      }
+    }
+  }
+  &.nav-left-open {
+    @include mq($screen-xs-max, "max") {
+      .fieldset-editable-buttons {
+        // transform: translate(rem($fieldset-editable-padding + $nav-aside-width), 0);
+      }
+    }
   }
 }

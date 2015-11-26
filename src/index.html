@@ -1,5 +1,5 @@
 <!doctype html>
-<html ng-app="tinkApp">
+<html ng-app="tinkApp" class="has-nav-left" ng-controller="controllero as c1" ng-init="navLeftOpen=false" ng-class="{'nav-left-open': navLeftOpen}">
 <head>
 	<meta charset="utf-8">
 	<title>Tink module</title>
@@ -13,190 +13,194 @@
 </head>
 <body>
 {{valuesChanged}}
-<div class="container" ng-controller="controllero as c1">
-{{c1}}
-      <button ng-click="c1.show()">To Show the data</button>
-      <button ng-click="c1.switch()">edit/ not edit</button>
-<h1>is editable {{c1.switchValue}}</h1>
-    <div class="row">
-      <div  class="col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
-        <h1>Loco fieldset</h1>
+<div class="main">
+  <div class="container">
+  {{c1}}
+  {{navLeftOpen}}
+        <button ng-click="navLeftOpen = !navLeftOpen">Open left nav</button>
+        <button ng-click="c1.show()">To Show the data</button>
+        <button ng-click="c1.switch()">edit/ not edit</button>
+  <h1>is editable {{c1.switchValue}}</h1>
+      <div class="row">
+        <div  class="col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
+          <h1>Loco fieldset</h1>
+        </div>
       </div>
-    </div>
-    <div class="row">
-      <div  class="col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
-        <form id="form" class="form-horizontal fieldset-editable uneditable" tink-fieldset tink-form-editable="c1.switchValue"  values-changed="c1.haschanged">
-           <div data-data="form1" data-ng-init="form1={rijksregisternr:undefined}">
-            <fieldset>
-              <legend>Algemeen</legend>
+      <div class="row">
+        <div  class="col-xs-12 col-sm-10 col-sm-push-1 col-md-8 col-md-push-2 col-lg-6 col-lg-push-3">
+          <form id="form" class="form-horizontal fieldset-editable uneditable" tink-fieldset tink-form-editable="c1.switchValue"  values-changed="c1.haschanged">
+             <div data-data="form1" data-ng-init="form1={rijksregisternr:undefined}">
+              <fieldset>
+                <legend>Algemeen</legend>
 
 
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field1">Type</label>
-                </div>
-                <div class="col-xs-8">
-                  <input ng-model="c1.field1" type="text" name="field1" id="field1" disabled required>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-xs-12">
-                  <label for="field2">Instelling</label>
-                </div>
-                <div class="col-xs-12">
-                  <div class="select">
-                    <select ng-model="c1.field2" name="field2" id="field2">
-                      <option selected="" checked value="Christelijke Mutualiteit">Christelijke Mutualiteit</option>
-                      <option value="Socialistische Mutualiteit">Socialistische Mutualiteit</option>
-                      <option value="Liberale Mutualiteit">Liberale Mutualiteit</option>
-                      <option value="Onafhankelijk Ziekenfonds">Onafhankelijk Ziekenfonds</option>
-                      <option value="Neutraal Ziekenfonds">Neutraal Ziekenfonds</option>
-                      <option value="Andere">Andere</option>
-                    </select>
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field1">Type</label>
+                  </div>
+                  <div class="col-xs-8">
+                    <input ng-model="c1.field1" type="text" name="field1" id="field1" disabled required>
                   </div>
                 </div>
-              </div>
 
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field11">Toestand</label>
-                </div>
-                <div class="col-xs-8">
-                  <div class="radio">
-                    <input type="radio" ng-model="c1.oke" id="radio1" name="radio" value="In orde">
-                    <label for="radio1">In orde</label>
+                <div class="row form-group">
+                  <div class="col-xs-12">
+                    <label for="field2">Instelling</label>
                   </div>
-                  <div class="radio">
-                    <input type="radio" ng-model="c1.oke" id="radio2" name="radio" value="Niet in orde">
-                    <label for="radio2">Niet in orde</label>
+                  <div class="col-xs-12">
+                    <div class="select">
+                      <select ng-model="c1.field2" name="field2" id="field2">
+                        <option selected="" checked value="Christelijke Mutualiteit">Christelijke Mutualiteit</option>
+                        <option value="Socialistische Mutualiteit">Socialistische Mutualiteit</option>
+                        <option value="Liberale Mutualiteit">Liberale Mutualiteit</option>
+                        <option value="Onafhankelijk Ziekenfonds">Onafhankelijk Ziekenfonds</option>
+                        <option value="Neutraal Ziekenfonds">Neutraal Ziekenfonds</option>
+                        <option value="Andere">Andere</option>
+                      </select>
+                    </div>
                   </div>
-                  <div class="radio">
-                    <input type="radio" ng-model="c1.oke" id="radio3" name="radio" value="Niet geweten" checked>
-                    <label for="radio3">Niet geweten</label>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field11">Toestand</label>
                   </div>
+                  <div class="col-xs-8">
+                    <div class="radio">
+                      <input type="radio" ng-model="c1.oke" id="radio1" name="radio" value="In orde">
+                      <label for="radio1">In orde</label>
+                    </div>
+                    <div class="radio">
+                      <input type="radio" ng-model="c1.oke" id="radio2" name="radio" value="Niet in orde">
+                      <label for="radio2">Niet in orde</label>
+                    </div>
+                    <div class="radio">
+                      <input type="radio" ng-model="c1.oke" id="radio3" name="radio" value="Niet geweten" checked>
+                      <label for="radio3">Niet geweten</label>
+                    </div>
 
 
+                  </div>
                 </div>
-              </div>
 
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field14">Paspoortnr.</label>
-                </div>
-                <div class="col-xs-8">
-                <tink-identity-number  data-ng-model="c1.field3"></tink-identity-number>
-
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field3">Adres</label>
-                </div>
-                <div class="col-xs-8">
-                  <input type="text"  ng-model="c1.field4" name="field3" id="field3" required>
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field3">Rich textbox</label>
-                </div>
-                <div class="col-xs-8">
-
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-xs-8 col-xs-push-4">
-                  <input type="text" ng-model="c1.field5" name="field4" id="field4"  required>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field5">Telefoonnr.</label>
-                </div>
-                <div class="col-xs-8">
-                  <input type="number" name="field5" ng-model="c1.field6" id="field5">
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field5">timepicker.</label>
-                </div>
-                <div class="col-xs-8">
-                  <tink-timepicker data-ng-model="selectedTime" disabled></tink-timepicker>
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field5">datepicker.</label>
-                </div>
-                <div class="col-xs-8">
-                  <data-tink-datepicker data-ng-model="form2.datumaansluiting"></data-tink-datepicker>
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field5">datepickerrange.</label>
-                </div>
-                <div class="col-xs-8">
-                  <tink-datepicker-range data-first-date="firstSelectedDate" data-last-date="lastSelectedDate"></tink-datepicker-range>
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field5">indenty.</label>
-                </div>
-                <div class="col-xs-8">
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field14">Paspoortnr.</label>
+                  </div>
+                  <div class="col-xs-8">
                   <tink-identity-number  data-ng-model="c1.field3"></tink-identity-number>
-                </div>
-              </div>
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field5">cardnumber.</label>
-                </div>
-                <div class="col-xs-8">
-                  <tink-national-number required="required" name="nationalNoField" data-ng-model="nationalNoModel"></tink-national-number>
-                </div>
-              </div>
 
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field6">Opmerking</label>
-                </div>
-                <div class="col-xs-8">
-                  <textarea ng-model="opmerking" name="field6" id="field6" rows="4" required></textarea>
-                </div>
-              </div>
-
-              <div class="row form-group">
-                <div class="col-xs-4">
-                  <label for="field7">Betaalwijze</label>
-                </div>
-                <div class="col-xs-8">
-                  <div class="select">
-                    <select ng-model="c2.valuesselect" name="field7" id="field7">
-                      <option value="Cash">Cash</option>
-                      <option value="Bancontact">Bancontact</option>
-                      <option value="Maestro">Maestro</option>
-                      <option value="VISA">VISA</option>
-                      <option value="Paypal">Paypal</option>
-                      <option value="Andere">Andere</option>
-                    </select>
                   </div>
                 </div>
-              </div>
-            </fieldset>
-          </div>
-          <div class="fieldset-editable-buttons">
-            <button type="submit">Bewaren</button> <button type="button">Annuleren</button>
-          </div>
-        </form>
+
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field3">Adres</label>
+                  </div>
+                  <div class="col-xs-8">
+                    <input type="text"  ng-model="c1.field4" name="field3" id="field3" required>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field3">Rich textbox</label>
+                  </div>
+                  <div class="col-xs-8">
+
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-xs-8 col-xs-push-4">
+                    <input type="text" ng-model="c1.field5" name="field4" id="field4"  required>
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field5">Telefoonnr.</label>
+                  </div>
+                  <div class="col-xs-8">
+                    <input type="number" name="field5" ng-model="c1.field6" id="field5">
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field5">timepicker.</label>
+                  </div>
+                  <div class="col-xs-8">
+                    <tink-timepicker data-ng-model="selectedTime" disabled></tink-timepicker>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field5">datepicker.</label>
+                  </div>
+                  <div class="col-xs-8">
+                    <data-tink-datepicker data-ng-model="form2.datumaansluiting"></data-tink-datepicker>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field5">datepickerrange.</label>
+                  </div>
+                  <div class="col-xs-8">
+                    <tink-datepicker-range data-first-date="firstSelectedDate" data-last-date="lastSelectedDate"></tink-datepicker-range>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field5">indenty.</label>
+                  </div>
+                  <div class="col-xs-8">
+                    <tink-identity-number  data-ng-model="c1.field3"></tink-identity-number>
+                  </div>
+                </div>
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field5">cardnumber.</label>
+                  </div>
+                  <div class="col-xs-8">
+                    <tink-national-number required="required" name="nationalNoField" data-ng-model="nationalNoModel"></tink-national-number>
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field6">Opmerking</label>
+                  </div>
+                  <div class="col-xs-8">
+                    <textarea ng-model="opmerking" name="field6" id="field6" rows="4" required></textarea>
+                  </div>
+                </div>
+
+                <div class="row form-group">
+                  <div class="col-xs-4">
+                    <label for="field7">Betaalwijze</label>
+                  </div>
+                  <div class="col-xs-8">
+                    <div class="select">
+                      <select ng-model="c2.valuesselect" name="field7" id="field7">
+                        <option value="Cash">Cash</option>
+                        <option value="Bancontact">Bancontact</option>
+                        <option value="Maestro">Maestro</option>
+                        <option value="VISA">VISA</option>
+                        <option value="Paypal">Paypal</option>
+                        <option value="Andere">Andere</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </fieldset>
+            </div>
+            <div class="fieldset-editable-buttons">
+              <button type="submit">Bewaren</button> <button type="button">Annuleren</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
-  </div>
+</div>
 
 	<!-- bower:js -->
 	<script src="bower_components/jquery/dist/jquery.js"></script>

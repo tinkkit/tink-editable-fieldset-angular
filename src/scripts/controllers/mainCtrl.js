@@ -8,8 +8,7 @@
  * Controller of the tinkApp
  */
  angular.module('tinkApp')
- .controller('MainCtrl', function ($scope) {
-
+ .controller('MainCtrl', function () {
 
 });
 

@@ -15,27 +15,16 @@
       compile:function(template){
         return {
         post: function () { },
-        pre: function (scope, element, attr) {
+        pre: function (scope, element) {
         var disabledReady=[];
 
-        function disabledAtStart(){
-          getElements().each(function(index,elem){
-              if($(elem).attr('disabled') || $(elem).scope().isDisabled){
-                disabledReady.push($(elem).get(0));
-              }
-          })
-        }
-        var activeElement = null;
-        var initSerialize;
-        var focus = 0;
-
-        var elementWithMouseOver = [];
-        var classToSetWhenOnHover = "mouseOver";
-        var classToSetWhenDefault = "mouseOff";
-        var classToSetWhenActive = "mouseFocus";
-        var cssUneditableClass = "uneditable";
-
-        setClassActive(classToSetWhenDefault);
+        // function disabledAtStart(){
+        //   getElements().each(function(index,elem){
+        //       if($(elem).attr('disabled') || $(elem).scope().isDisabled){
+        //         disabledReady.push($(elem).get(0));
+        //       }
+        //   });
+        // }
 
         var activeClass = '';
         function setClassActive(cssClass,elem){
@@ -51,26 +40,45 @@
                 scope.tinkFormStatus = cssClass;
               }
             }, 10);
-            
-          })
+
+          });
         }
 
-         function checkIfIsEditable(){
-          return $(template).hasClass(cssUneditableClass);          
+        var activeElement = null;
+        var initSerialize;
+        var focus = 0;
+
+        var elementWithMouseOver = [];
+        var classToSetWhenOnHover = 'mouseOver';
+        var classToSetWhenDefault = 'mouseOff';
+        var classToSetWhenActive = 'mouseFocus';
+        var cssUneditableClass = 'uneditable';
+
+        setClassActive(classToSetWhenDefault);
+
+        function checkIfIsEditable(){
+          return $(template).hasClass(cssUneditableClass);
         }
+
+        $(element).bind('mousedown',function(e){
+          var target = $(e.target);
+          if(!target.is(':input')){
+            return false;
+          }
+        });
 
         scope.$watch('tinkFormEditable',function(value){
           if(!value){
-            $(template).addClass(cssUneditableClass); 
-            getElements().each(function(index,elem){  
+            $(template).addClass(cssUneditableClass);
+            getElements().each(function(index,elem){
               safeApply(scope,function(){
                 if($(elem).isolateScope()){
                   $(elem).isolateScope().isDisabled = true;
-                }  
+                }
                 $(elem).attr('disabled','true');
                 specialElementsFix($(elem),false);
-              });           
-            })
+              });
+            });
           }else{
             $(template).removeClass(cssUneditableClass);
             getElements().each(function(index,elem){
@@ -78,14 +86,14 @@
                 safeApply(scope,function(){
                   if($(elem).isolateScope()){
                     $(elem).isolateScope().isDisabled = false;
-                  }                  
+                  }
                   $(elem).removeAttr('disabled');
                   specialElementsFix($(elem),true);
-                });  
-              }              
-            })
+                });
+              }
+            });
           }
-        })
+        });
 
         function specialElementsFix(element,enable){
           if($(element).is('select')){
@@ -99,7 +107,7 @@
             var model = element.attr('ng-model') || element.attr('data-ng-model');
             var input = $('<input type="text" disabled ng-model="'+model+'"/>');
             input = $compile(input)(scope.$parent);
-            input.insertAfter(element); 
+            input.insertAfter(element);
           }else{
             element.css('display','block');
             if(element.next().is('input')){
@@ -110,37 +118,37 @@
 
         function isDisabled(elem){
           var targetEl = $(elem);
-          var isDisabled = targetEl.attr('disabled') || targetEl.attr('data-disabled') || targetEl.attr('is-disabled') || targetEl.attr('data-is-disabled');
-          if(isDisabled){
+          var itsDisabled = targetEl.attr('disabled') || targetEl.attr('data-disabled') || targetEl.attr('is-disabled') || targetEl.attr('data-is-disabled');
+          if(itsDisabled){
             return true;
           }
           return false;
         }
 
-        function mouseOverEvent(e,elem){
+        function mouseOverEvent(e){
           safeApply(scope,function(){
               if(activeClass !== classToSetWhenActive && !isDisabled(e.target)){
                 activeElement = $(e.target).get(0);
                 setClassActive(classToSetWhenOnHover,$(e.target).get(0));
               }
-          })
+          });
         }
 
-        function mouseOutEvent(e,elem){
+        function mouseOutEvent(e){
           safeApply(scope,function(){
               if(activeClass !== classToSetWhenActive && !isDisabled(e.target)){
                 setClassActive(classToSetWhenDefault,$(e.target).get(0));
                // activeElement = null;
               }
-          })          
+          });
         }
 
-        function blurEvent(e,elem){
+        function blurEvent(e){
           safeApply(scope,function(){
             $timeout(function(){
-              setClassActive(classToSetWhenDefault,$(e.target).get(0));         
+              setClassActive(classToSetWhenDefault,$(e.target).get(0));
             },10);
-          })  
+          });
         }
 
         function focusEvent(e){
@@ -158,20 +166,20 @@
         function addEventsToElements(){
           getElements().each(function(index,elem){
             scope.addEvents($(elem));
-          })
+          });
         }
 
         scope.addEvents = function(elem){
           $(elem).focusin(elem,focusEvent);
           $(elem).mouseover(elem,mouseOverEvent);
-          $(elem).mouseout(elem,mouseOutEvent);          
+          $(elem).mouseout(elem,mouseOutEvent);
           $(elem).focusout(elem,blurEvent);
-        }
+        };
         scope.removeEvents = function(elem){
           $(elem).unbind('mouseover mouseout focusin focusout');
-        }
+        };
 
-         addEventsToElements(); 
+         addEventsToElements();
       }
     };
   }
