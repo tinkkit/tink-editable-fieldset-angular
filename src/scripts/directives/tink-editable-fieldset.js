@@ -18,13 +18,14 @@
         pre: function (scope, element) {
         var disabledReady=[];
 
-        // function disabledAtStart(){
-        //   getElements().each(function(index,elem){
-        //       if($(elem).attr('disabled') || $(elem).scope().isDisabled){
-        //         disabledReady.push($(elem).get(0));
-        //       }
-        //   });
-        // }
+        var activeElement = null;
+
+        var classToSetWhenOnHover = 'mouseOver';
+        var classToSetWhenDefault = 'mouseOff';
+        var classToSetWhenActive = 'mouseFocus';
+        var cssUneditableClass = 'uneditable';
+
+        
 
         var activeClass = '';
         function setClassActive(cssClass,elem){
@@ -40,44 +41,40 @@
                 scope.tinkFormStatus = cssClass;
               }
             }, 10);
-
+            
           });
         }
 
-        var activeElement = null;
-        var initSerialize;
-        var focus = 0;
-
-        var elementWithMouseOver = [];
-        var classToSetWhenOnHover = 'mouseOver';
-        var classToSetWhenDefault = 'mouseOff';
-        var classToSetWhenActive = 'mouseFocus';
-        var cssUneditableClass = 'uneditable';
-
         setClassActive(classToSetWhenDefault);
-
-        function checkIfIsEditable(){
-          return $(template).hasClass(cssUneditableClass);
-        }
-
-        $(element).bind('mousedown',function(e){
-          var target = $(e.target);
-          if(!target.is(':input')){
-            return false;
-          }
+        scope.formFocus = 0;
+        $(element).bind('mousedown',function(){
+            safeApply(scope,function(){
+              if(scope.formFocus === 0){
+                $('body').bind('mousedown',function(e){
+                //var target = $(e.target);
+                  if($(element).get(0) !== $(e.target).get(0) && $(element).find($(e.target)).length === 0){
+                    scope.formFocus = 0;
+                     $('body').unbind('mousedown');
+                     activeElement = $(element).get(0);
+                     setClassActive(classToSetWhenDefault,$(element).get(0));
+                  }
+              });
+            }          
+            scope.formFocus = 1;
+          });
         });
 
         scope.$watch('tinkFormEditable',function(value){
           if(!value){
-            $(template).addClass(cssUneditableClass);
-            getElements().each(function(index,elem){
+            $(template).addClass(cssUneditableClass); 
+            getElements().each(function(index,elem){  
               safeApply(scope,function(){
                 if($(elem).isolateScope()){
                   $(elem).isolateScope().isDisabled = true;
-                }
+                }  
                 $(elem).attr('disabled','true');
                 specialElementsFix($(elem),false);
-              });
+              });           
             });
           }else{
             $(template).removeClass(cssUneditableClass);
@@ -86,11 +83,11 @@
                 safeApply(scope,function(){
                   if($(elem).isolateScope()){
                     $(elem).isolateScope().isDisabled = false;
-                  }
+                  }                  
                   $(elem).removeAttr('disabled');
                   specialElementsFix($(elem),true);
-                });
-              }
+                });  
+              }              
             });
           }
         });
@@ -107,7 +104,7 @@
             var model = element.attr('ng-model') || element.attr('data-ng-model');
             var input = $('<input type="text" disabled ng-model="'+model+'"/>');
             input = $compile(input)(scope.$parent);
-            input.insertAfter(element);
+            input.insertAfter(element); 
           }else{
             element.css('display','block');
             if(element.next().is('input')){
@@ -118,8 +115,8 @@
 
         function isDisabled(elem){
           var targetEl = $(elem);
-          var itsDisabled = targetEl.attr('disabled') || targetEl.attr('data-disabled') || targetEl.attr('is-disabled') || targetEl.attr('data-is-disabled');
-          if(itsDisabled){
+          var itIsDisabled = targetEl.attr('disabled') || targetEl.attr('data-disabled') || targetEl.attr('is-disabled') || targetEl.attr('data-is-disabled');
+          if(itIsDisabled){
             return true;
           }
           return false;
@@ -140,15 +137,7 @@
                 setClassActive(classToSetWhenDefault,$(e.target).get(0));
                // activeElement = null;
               }
-          });
-        }
-
-        function blurEvent(e){
-          safeApply(scope,function(){
-            $timeout(function(){
-              setClassActive(classToSetWhenDefault,$(e.target).get(0));
-            },10);
-          });
+          });      
         }
 
         function focusEvent(e){
@@ -172,14 +161,13 @@
         scope.addEvents = function(elem){
           $(elem).focusin(elem,focusEvent);
           $(elem).mouseover(elem,mouseOverEvent);
-          $(elem).mouseout(elem,mouseOutEvent);
-          $(elem).focusout(elem,blurEvent);
+          $(elem).mouseout(elem,mouseOutEvent);          
         };
         scope.removeEvents = function(elem){
-          $(elem).unbind('mouseover mouseout focusin focusout');
+          $(elem).unbind('mouseover mouseout focusin');
         };
 
-         addEventsToElements();
+         addEventsToElements(); 
       }
     };
   }
