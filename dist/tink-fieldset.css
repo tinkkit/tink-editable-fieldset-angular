@@ -174,11 +174,13 @@
  *
  */
 .fieldset-editable {
-  background-color: #f2f2f2;
   padding: 1.0714285714rem 1.0714285714rem 4.6428571429rem ;
   transition: background-color 0.1s linear;
   /**
    * Default styling
+   */
+  /**
+   * FOCUS state
    */
   /**
    * OFF state
@@ -226,154 +228,150 @@
     transition: border 0.2s !important; }
   .fieldset-editable .datepicker-icon {
     transition: color 0.2s !important; }
-  .fieldset-editable.mouseOff {
-    background-color: transparent; }
-    .fieldset-editable.mouseOff input,
-    .fieldset-editable.mouseOff .faux-input,
-    .fieldset-editable.mouseOff select,
-    .fieldset-editable.mouseOff textarea {
-      background-color: rgba(255, 255, 255, 0);
-      border-color: #e4e4e4; }
-      .fieldset-editable.mouseOff input::-moz-placeholder,
-      .fieldset-editable.mouseOff .faux-input::-moz-placeholder,
-      .fieldset-editable.mouseOff select::-moz-placeholder,
-      .fieldset-editable.mouseOff textarea::-moz-placeholder {
-        color: transparent;
-        opacity: 1;
-        transition: color linear 0.1s; }
-      .fieldset-editable.mouseOff input:-ms-input-placeholder,
-      .fieldset-editable.mouseOff .faux-input:-ms-input-placeholder,
-      .fieldset-editable.mouseOff select:-ms-input-placeholder,
-      .fieldset-editable.mouseOff textarea:-ms-input-placeholder {
-        color: transparent;
-        transition: color linear 0.1s; }
-      .fieldset-editable.mouseOff input::-webkit-input-placeholder,
-      .fieldset-editable.mouseOff .faux-input::-webkit-input-placeholder,
-      .fieldset-editable.mouseOff select::-webkit-input-placeholder,
-      .fieldset-editable.mouseOff textarea::-webkit-input-placeholder {
-        color: transparent;
-        transition: color linear 0.1s; }
-      .fieldset-editable.mouseOff input:focus::-moz-placeholder,
-      .fieldset-editable.mouseOff .faux-input:focus::-moz-placeholder,
-      .fieldset-editable.mouseOff select:focus::-moz-placeholder,
-      .fieldset-editable.mouseOff textarea:focus::-moz-placeholder {
-        color: rgba(20, 20, 20, 0);
-        opacity: 1; }
-      .fieldset-editable.mouseOff input:focus:-ms-input-placeholder,
-      .fieldset-editable.mouseOff .faux-input:focus:-ms-input-placeholder,
-      .fieldset-editable.mouseOff select:focus:-ms-input-placeholder,
-      .fieldset-editable.mouseOff textarea:focus:-ms-input-placeholder {
-        color: rgba(20, 20, 20, 0); }
-      .fieldset-editable.mouseOff input:focus::-webkit-input-placeholder,
-      .fieldset-editable.mouseOff .faux-input:focus::-webkit-input-placeholder,
-      .fieldset-editable.mouseOff select:focus::-webkit-input-placeholder,
-      .fieldset-editable.mouseOff textarea:focus::-webkit-input-placeholder {
-        color: rgba(20, 20, 20, 0); }
-      .fieldset-editable.mouseOff input .placeholder,
-      .fieldset-editable.mouseOff .faux-input .placeholder,
-      .fieldset-editable.mouseOff select .placeholder,
-      .fieldset-editable.mouseOff textarea .placeholder {
-        color: transparent; }
-    .fieldset-editable.mouseOff input::-webkit-inner-spin-button,
-    .fieldset-editable.mouseOff input ~ .timepicker-later,
-    .fieldset-editable.mouseOff input ~ .timepicker-earlier {
-      border-color: #e4e4e4 !important; }
-    .fieldset-editable.mouseOff input[type="checkbox"] + label:before,
-    .fieldset-editable.mouseOff input[type="radio"] + label:before {
-      border-color: #e4e4e4 !important; }
-    .fieldset-editable.mouseOff .datepicker-icon {
-      color: #adadad; }
-    .fieldset-editable.mouseOff .fieldset-editable-buttons {
-      -webkit-transform: translate(0, 5rem );
-          -ms-transform: translate(0, 5rem );
-              transform: translate(0, 5rem ); }
-  .fieldset-editable.mouseOver {
-    background-color: transparent; }
-    .fieldset-editable.mouseOver input,
-    .fieldset-editable.mouseOver .faux-input,
-    .fieldset-editable.mouseOver select,
-    .fieldset-editable.mouseOver textarea {
-      background-color: rgba(255, 255, 255, 0.5);
-      border-color: #e4e4e4; }
-      .fieldset-editable.mouseOver input:hover,
-      .fieldset-editable.mouseOver .faux-input:hover,
-      .fieldset-editable.mouseOver select:hover,
-      .fieldset-editable.mouseOver textarea:hover {
-        background-color: #fff;
-        border-color: #cfcfcf; }
-      .fieldset-editable.mouseOver input::-moz-placeholder,
-      .fieldset-editable.mouseOver .faux-input::-moz-placeholder,
-      .fieldset-editable.mouseOver select::-moz-placeholder,
-      .fieldset-editable.mouseOver textarea::-moz-placeholder {
-        color: transparent;
-        opacity: 1;
-        transition: color linear 0.1s; }
-      .fieldset-editable.mouseOver input:-ms-input-placeholder,
-      .fieldset-editable.mouseOver .faux-input:-ms-input-placeholder,
-      .fieldset-editable.mouseOver select:-ms-input-placeholder,
-      .fieldset-editable.mouseOver textarea:-ms-input-placeholder {
-        color: transparent;
-        transition: color linear 0.1s; }
-      .fieldset-editable.mouseOver input::-webkit-input-placeholder,
-      .fieldset-editable.mouseOver .faux-input::-webkit-input-placeholder,
-      .fieldset-editable.mouseOver select::-webkit-input-placeholder,
-      .fieldset-editable.mouseOver textarea::-webkit-input-placeholder {
-        color: transparent;
-        transition: color linear 0.1s; }
-      .fieldset-editable.mouseOver input:focus::-moz-placeholder,
-      .fieldset-editable.mouseOver .faux-input:focus::-moz-placeholder,
-      .fieldset-editable.mouseOver select:focus::-moz-placeholder,
-      .fieldset-editable.mouseOver textarea:focus::-moz-placeholder {
-        color: rgba(20, 20, 20, 0);
-        opacity: 1; }
-      .fieldset-editable.mouseOver input:focus:-ms-input-placeholder,
-      .fieldset-editable.mouseOver .faux-input:focus:-ms-input-placeholder,
-      .fieldset-editable.mouseOver select:focus:-ms-input-placeholder,
-      .fieldset-editable.mouseOver textarea:focus:-ms-input-placeholder {
-        color: rgba(20, 20, 20, 0); }
-      .fieldset-editable.mouseOver input:focus::-webkit-input-placeholder,
-      .fieldset-editable.mouseOver .faux-input:focus::-webkit-input-placeholder,
-      .fieldset-editable.mouseOver select:focus::-webkit-input-placeholder,
-      .fieldset-editable.mouseOver textarea:focus::-webkit-input-placeholder {
-        color: rgba(20, 20, 20, 0); }
-      .fieldset-editable.mouseOver input .placeholder,
-      .fieldset-editable.mouseOver .faux-input .placeholder,
-      .fieldset-editable.mouseOver select .placeholder,
-      .fieldset-editable.mouseOver textarea .placeholder {
-        color: transparent; }
-    .fieldset-editable.mouseOver input[type="checkbox"] + label:hover:before,
-    .fieldset-editable.mouseOver input[type="radio"] + label:hover:before {
-      border-color: #cfcfcf !important; }
-    .fieldset-editable.mouseOver input[type="checkbox"] + label:before,
-    .fieldset-editable.mouseOver input[type="radio"] + label:before {
-      border-color: #e4e4e4 !important; }
-    .fieldset-editable.mouseOver input::-webkit-inner-spin-button,
-    .fieldset-editable.mouseOver input ~ .timepicker-later,
-    .fieldset-editable.mouseOver input ~ .timepicker-earlier {
-      border-left-color: #e4e4e4 !important; }
-    .fieldset-editable.mouseOver input:hover::-webkit-inner-spin-button,
-    .fieldset-editable.mouseOver input:hover ~ .timepicker-later,
-    .fieldset-editable.mouseOver input:hover ~ .timepicker-earlier {
-      border-left-color: #cfcfcf !important; }
-    .fieldset-editable.mouseOver .datepicker-input-fields:hover .faux-input {
+  .fieldset-editable.mouseFocus {
+    background-color: #f2f2f2; }
+  .fieldset-editable.mouseOff input,
+  .fieldset-editable.mouseOff .faux-input,
+  .fieldset-editable.mouseOff select,
+  .fieldset-editable.mouseOff textarea {
+    background-color: rgba(255, 255, 255, 0);
+    border-color: #e4e4e4; }
+    .fieldset-editable.mouseOff input::-moz-placeholder,
+    .fieldset-editable.mouseOff .faux-input::-moz-placeholder,
+    .fieldset-editable.mouseOff select::-moz-placeholder,
+    .fieldset-editable.mouseOff textarea::-moz-placeholder {
+      color: transparent;
+      opacity: 1;
+      transition: color linear 0.1s; }
+    .fieldset-editable.mouseOff input:-ms-input-placeholder,
+    .fieldset-editable.mouseOff .faux-input:-ms-input-placeholder,
+    .fieldset-editable.mouseOff select:-ms-input-placeholder,
+    .fieldset-editable.mouseOff textarea:-ms-input-placeholder {
+      color: transparent;
+      transition: color linear 0.1s; }
+    .fieldset-editable.mouseOff input::-webkit-input-placeholder,
+    .fieldset-editable.mouseOff .faux-input::-webkit-input-placeholder,
+    .fieldset-editable.mouseOff select::-webkit-input-placeholder,
+    .fieldset-editable.mouseOff textarea::-webkit-input-placeholder {
+      color: transparent;
+      transition: color linear 0.1s; }
+    .fieldset-editable.mouseOff input:focus::-moz-placeholder,
+    .fieldset-editable.mouseOff .faux-input:focus::-moz-placeholder,
+    .fieldset-editable.mouseOff select:focus::-moz-placeholder,
+    .fieldset-editable.mouseOff textarea:focus::-moz-placeholder {
+      color: rgba(20, 20, 20, 0);
+      opacity: 1; }
+    .fieldset-editable.mouseOff input:focus:-ms-input-placeholder,
+    .fieldset-editable.mouseOff .faux-input:focus:-ms-input-placeholder,
+    .fieldset-editable.mouseOff select:focus:-ms-input-placeholder,
+    .fieldset-editable.mouseOff textarea:focus:-ms-input-placeholder {
+      color: rgba(20, 20, 20, 0); }
+    .fieldset-editable.mouseOff input:focus::-webkit-input-placeholder,
+    .fieldset-editable.mouseOff .faux-input:focus::-webkit-input-placeholder,
+    .fieldset-editable.mouseOff select:focus::-webkit-input-placeholder,
+    .fieldset-editable.mouseOff textarea:focus::-webkit-input-placeholder {
+      color: rgba(20, 20, 20, 0); }
+    .fieldset-editable.mouseOff input .placeholder,
+    .fieldset-editable.mouseOff .faux-input .placeholder,
+    .fieldset-editable.mouseOff select .placeholder,
+    .fieldset-editable.mouseOff textarea .placeholder {
+      color: transparent; }
+  .fieldset-editable.mouseOff input::-webkit-inner-spin-button,
+  .fieldset-editable.mouseOff input ~ .timepicker-later,
+  .fieldset-editable.mouseOff input ~ .timepicker-earlier {
+    border-color: #e4e4e4 !important; }
+  .fieldset-editable.mouseOff input[type="checkbox"] + label:before,
+  .fieldset-editable.mouseOff input[type="radio"] + label:before {
+    border-color: #e4e4e4 !important; }
+  .fieldset-editable.mouseOff .datepicker-icon {
+    color: #adadad; }
+  .fieldset-editable.mouseOff .fieldset-editable-buttons {
+    -webkit-transform: translate(0, 5rem );
+        -ms-transform: translate(0, 5rem );
+            transform: translate(0, 5rem ); }
+  .fieldset-editable.mouseOver input,
+  .fieldset-editable.mouseOver .faux-input,
+  .fieldset-editable.mouseOver select,
+  .fieldset-editable.mouseOver textarea {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-color: #e4e4e4; }
+    .fieldset-editable.mouseOver input:hover,
+    .fieldset-editable.mouseOver .faux-input:hover,
+    .fieldset-editable.mouseOver select:hover,
+    .fieldset-editable.mouseOver textarea:hover {
       background-color: #fff;
       border-color: #cfcfcf; }
-    .fieldset-editable.mouseOver .datepicker-input-fields:hover .datepicker-icon {
-      color: #858585; }
-    .fieldset-editable.mouseOver .datepicker-icon {
-      color: #999999; }
-    .fieldset-editable.mouseOver .fieldset-editable-buttons {
-      -webkit-transform: translate(0, 5rem );
-          -ms-transform: translate(0, 5rem );
-              transform: translate(0, 5rem ); }
-  .fieldset-editable.uneditable {
-    background-color: transparent; }
-    .fieldset-editable.uneditable .datepicker-icon {
-      display: none; }
-    .fieldset-editable.uneditable .fieldset-editable-buttons {
-      -webkit-transform: translate(0, 5rem );
-          -ms-transform: translate(0, 5rem );
-              transform: translate(0, 5rem ); }
+    .fieldset-editable.mouseOver input::-moz-placeholder,
+    .fieldset-editable.mouseOver .faux-input::-moz-placeholder,
+    .fieldset-editable.mouseOver select::-moz-placeholder,
+    .fieldset-editable.mouseOver textarea::-moz-placeholder {
+      color: transparent;
+      opacity: 1;
+      transition: color linear 0.1s; }
+    .fieldset-editable.mouseOver input:-ms-input-placeholder,
+    .fieldset-editable.mouseOver .faux-input:-ms-input-placeholder,
+    .fieldset-editable.mouseOver select:-ms-input-placeholder,
+    .fieldset-editable.mouseOver textarea:-ms-input-placeholder {
+      color: transparent;
+      transition: color linear 0.1s; }
+    .fieldset-editable.mouseOver input::-webkit-input-placeholder,
+    .fieldset-editable.mouseOver .faux-input::-webkit-input-placeholder,
+    .fieldset-editable.mouseOver select::-webkit-input-placeholder,
+    .fieldset-editable.mouseOver textarea::-webkit-input-placeholder {
+      color: transparent;
+      transition: color linear 0.1s; }
+    .fieldset-editable.mouseOver input:focus::-moz-placeholder,
+    .fieldset-editable.mouseOver .faux-input:focus::-moz-placeholder,
+    .fieldset-editable.mouseOver select:focus::-moz-placeholder,
+    .fieldset-editable.mouseOver textarea:focus::-moz-placeholder {
+      color: rgba(20, 20, 20, 0);
+      opacity: 1; }
+    .fieldset-editable.mouseOver input:focus:-ms-input-placeholder,
+    .fieldset-editable.mouseOver .faux-input:focus:-ms-input-placeholder,
+    .fieldset-editable.mouseOver select:focus:-ms-input-placeholder,
+    .fieldset-editable.mouseOver textarea:focus:-ms-input-placeholder {
+      color: rgba(20, 20, 20, 0); }
+    .fieldset-editable.mouseOver input:focus::-webkit-input-placeholder,
+    .fieldset-editable.mouseOver .faux-input:focus::-webkit-input-placeholder,
+    .fieldset-editable.mouseOver select:focus::-webkit-input-placeholder,
+    .fieldset-editable.mouseOver textarea:focus::-webkit-input-placeholder {
+      color: rgba(20, 20, 20, 0); }
+    .fieldset-editable.mouseOver input .placeholder,
+    .fieldset-editable.mouseOver .faux-input .placeholder,
+    .fieldset-editable.mouseOver select .placeholder,
+    .fieldset-editable.mouseOver textarea .placeholder {
+      color: transparent; }
+  .fieldset-editable.mouseOver input[type="checkbox"] + label:hover:before,
+  .fieldset-editable.mouseOver input[type="radio"] + label:hover:before {
+    border-color: #cfcfcf !important; }
+  .fieldset-editable.mouseOver input[type="checkbox"] + label:before,
+  .fieldset-editable.mouseOver input[type="radio"] + label:before {
+    border-color: #e4e4e4 !important; }
+  .fieldset-editable.mouseOver input::-webkit-inner-spin-button,
+  .fieldset-editable.mouseOver input ~ .timepicker-later,
+  .fieldset-editable.mouseOver input ~ .timepicker-earlier {
+    border-left-color: #e4e4e4 !important; }
+  .fieldset-editable.mouseOver input:hover::-webkit-inner-spin-button,
+  .fieldset-editable.mouseOver input:hover ~ .timepicker-later,
+  .fieldset-editable.mouseOver input:hover ~ .timepicker-earlier {
+    border-left-color: #cfcfcf !important; }
+  .fieldset-editable.mouseOver .datepicker-input-fields:hover .faux-input {
+    background-color: #fff;
+    border-color: #cfcfcf; }
+  .fieldset-editable.mouseOver .datepicker-input-fields:hover .datepicker-icon {
+    color: #858585; }
+  .fieldset-editable.mouseOver .datepicker-icon {
+    color: #999999; }
+  .fieldset-editable.mouseOver .fieldset-editable-buttons {
+    -webkit-transform: translate(0, 5rem );
+        -ms-transform: translate(0, 5rem );
+            transform: translate(0, 5rem ); }
+  .fieldset-editable.uneditable .datepicker-icon {
+    display: none; }
+  .fieldset-editable.uneditable .fieldset-editable-buttons {
+    -webkit-transform: translate(0, 5rem );
+        -ms-transform: translate(0, 5rem );
+            transform: translate(0, 5rem ); }
   .fieldset-editable-buttons {
     background: rgba(255, 255, 255, 0.85);
     border-top: 1px solid #eaeaea;
@@ -385,6 +383,13 @@
     -webkit-transform: translate(0, 0);
         -ms-transform: translate(0, 0);
             transform: translate(0, 0);
-    transition: -webkit-transform 0.1s linear;
-    transition: transform 0.1s linear;
-    z-index: 19; }
+    transition: padding 0.1s linear, -webkit-transform 0.1s linear;
+    transition: padding 0.1s linear, transform 0.1s linear;
+    z-index: 3; }
+
+/**
+ * Various fixes when nav left or nav right is there
+ */
+@media (min-width: 768px) {
+  html.has-nav-left .fieldset-editable-buttons {
+    padding-left: 16.7857142857rem ; } }
