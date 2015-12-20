@@ -166,6 +166,10 @@
         scope.removeEvents = function(elem){
           $(elem).unbind('mouseover mouseout focusin');
         };
+        
+        scope.setClassActive = function(clss,elem){
+          setClassActive(clss,elem)
+        }
 
          addEventsToElements(); 
       }
