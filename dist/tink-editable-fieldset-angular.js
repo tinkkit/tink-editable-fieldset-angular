@@ -31,7 +31,7 @@
         function setClassActive(cssClass,elem){
           safeApply(scope,function(){
             $timeout(function() {
-              if((activeElement === $(elem).get(0) || activeElement === null)){
+              if((activeElement === $(elem).get(0) || elem === null)){
                 $(element).removeClass(classToSetWhenOnHover);
                 $(element).removeClass(classToSetWhenDefault);
                 $(element).removeClass(classToSetWhenActive);
