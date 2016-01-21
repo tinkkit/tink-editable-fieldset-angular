@@ -52,7 +52,7 @@
               if(scope.formFocus === 0){
                 $('body').bind('mousedown',function(e){
                 //var target = $(e.target);
-                  if($(element).get(0) !== $(e.target).get(0) && $(element).find($(e.target)).length === 0){
+                  if($(element).get(0) !== $(e.target).get(0) && $(element).find($(e.target)).length === 0 && !$(e.target).is('[editable-focus]')){
                     scope.formFocus = 0;
                      $('body').unbind('mousedown');
                      activeElement = $(element).get(0);
