@@ -25,7 +25,7 @@
         var classToSetWhenActive = 'mouseFocus';
         var cssUneditableClass = 'uneditable';
 
-        
+        setClassActive(classToSetWhenDefault,null);
 
         var activeClass = '';
         function setClassActive(cssClass,elem){
