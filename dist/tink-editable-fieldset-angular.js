@@ -73,7 +73,7 @@
                   $(elem).isolateScope().isDisabled = true;
                 }  
                 $(elem).attr('disabled','true');
-                specialElementsFix($(elem),false);
+                //specialElementsFix($(elem),false);
               });           
             });
           }else{
@@ -85,18 +85,18 @@
                     $(elem).isolateScope().isDisabled = false;
                   }                  
                   $(elem).removeAttr('disabled');
-                  specialElementsFix($(elem),true);
+                  //specialElementsFix($(elem),true);
                 });  
               }              
             });
           }
         });
 
-        function specialElementsFix(element,enable){
+        /*function specialElementsFix(element,enable){
           if($(element).is('select')){
             elementSelectFix(element,enable);
           }
-        }
+        }*/
 
         function elementSelectFix(element,enable){
           if(!enable){
