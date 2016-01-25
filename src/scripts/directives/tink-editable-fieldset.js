@@ -47,14 +47,14 @@
 
         setClassActive(classToSetWhenDefault);
         scope.formFocus = 0;
-        $(element).bind('mousedown',function(){
+        $(element).bind('mousedown.'+scope.$id,function(){
             safeApply(scope,function(){
               if(scope.formFocus === 0){
-                $('body').bind('mousedown',function(e){
+                $('body').bind('mousedown.'+scope.$id,function(e){
                 //var target = $(e.target);
                   if($(element).get(0) !== $(e.target).get(0) && $(element).find($(e.target)).length === 0 && !$(e.target).is('[editable-focus]')){
                     scope.formFocus = 0;
-                     $('body').unbind('mousedown');
+                     $('body').unbind('mousedown.'+scope.$id);
                      activeElement = $(element).get(0);
                      setClassActive(classToSetWhenDefault,$(element).get(0));
                   }
