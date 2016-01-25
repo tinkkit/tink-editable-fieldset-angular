@@ -393,3 +393,10 @@
 @media (min-width: 768px) {
   html.has-nav-left .fieldset-editable-buttons {
     padding-left: 16.7857142857rem ; } }
+
+/**
+ * Fixes for editable fieldset when inside a card or accordion
+ */
+.card-body .fieldset-editable,
+.accordion-panel-body .fieldset-editable {
+  padding: 1.0714285714rem ; }

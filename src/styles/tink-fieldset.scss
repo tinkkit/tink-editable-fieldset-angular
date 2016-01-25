@@ -232,3 +232,13 @@ html {
     }
   }
 }
+
+/**
+ * Fixes for editable fieldset when inside a card or accordion
+ */
+.card-body,
+.accordion-panel-body {
+  .fieldset-editable {
+    padding: rem($fieldset-editable-padding);
+  }
+}
